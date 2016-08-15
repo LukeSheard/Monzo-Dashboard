@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser';
 import Express from 'express';
 import http from 'http';
 import path from 'path';
@@ -5,7 +6,12 @@ import path from 'path';
 /*  ========================
     Express Setup
 ========================  */
+const {
+  COOKIE_SECRET,
+  PORT
+} = process.env;
 const app = new Express();
+app.use(cookieParser(COOKIE_SECRET));
 
 /*  ========================
     WEBPACK SETUP
@@ -13,7 +19,7 @@ const app = new Express();
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from 'webpack.config';
+import webpackConfig from 'webpack.config.babel';
 
 const compiler = webpack(webpackConfig)
 app.use(webpackDevMiddleware(compiler, {
@@ -34,16 +40,14 @@ app.use(router);
 ========================  */
 let server;
 export function start() {
-  const port = process.env.PORT || 8080;
-
-  server = http.createServer(app).listen(port, (err) => {
+  server = http.createServer(app).listen(PORT, (err) => {
     if (err) {
       server.close();
       console.error(err);
       process.exit(1);
     }
 
-    console.info(`==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`)
+    console.info(`==> 🌎  Listening on port ${PORT}. Open up http://localhost:${PORT}/ in your browser.`)
   });
 }
 

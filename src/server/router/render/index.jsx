@@ -15,6 +15,9 @@ import {
 
 import configureRoutes from 'routes';
 import configureStore from 'store';
+import {
+  Actions as appActions,
+} from 'pages/App';
 
 import HTML from './Html';
 import waitForAll from './waitForAll';
@@ -24,6 +27,14 @@ export default (req, res) => {
   const store = configureStore(memory);
   const routes = configureRoutes(store);
   const history = syncHistoryWithStore(memory, store);
+
+  const cookieName = process.env.COOKIE_NAME;
+  if (req.signedCookies && req.signedCookies[cookieName]) {
+    const {
+      issueToken,
+    } = JSON.parse(req.signedCookies[cookieName]);
+    store.dispatch(appActions.receiveToken(issueToken));
+  }
 
   match({
     history,
@@ -37,7 +48,7 @@ export default (req, res) => {
       const preloaders = renderProps.components
         .filter((component) => component && component.preload)
         .map((component) => component.preload(renderProps.params, req))
-        .reduce((result, preloader) => result.concat(preloader), []);
+        .reduce((result, results) => result.concat(results), []);
 
       const renderSagas = waitForAll(preloaders);
 

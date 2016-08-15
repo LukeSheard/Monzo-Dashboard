@@ -1,20 +1,20 @@
 import jwtDecode from 'jwt-decode';
 
-const LOGIN_TYPE = 'SESSION_LOGIN';
-const LOGOUT_TYPE = 'SESSION_LOGOUT';
+const RECEIVE_TYPE = 'SESSION_RECEIVE_TOKEN';
+const REMOVE_TYPE = 'SESSION_REMOVE_TOKEN';
 
-export const sessionLogin = (token) => ({
-  type: LOGIN_TYPE,
+export const receiveToken = (token) => ({
+  type: RECEIVE_TYPE,
   payload: {
     token,
   },
 });
-sessionLogin.type = LOGIN_TYPE;
+receiveToken.type = RECEIVE_TYPE;
 
-export const sessionLogout = () => ({
-  type: LOGOUT_TYPE,
-})
-sessionLogout.type = LOGIN_TYPE;
+export const removeToken = () => ({
+  type: REMOVE_TYPE,
+});
+removeToken.type = RECEIVE_TYPE;
 
 const initialState = {
   loading: false,
@@ -22,7 +22,9 @@ const initialState = {
 };
 export default function (state = initialState, action = {}) {
   switch (action.type) {
-    case LOGIN_TYPE: {
+    case RECEIVE_TYPE: {
+      const token = action.payload.token;
+
       return {
         ...state,
         data: {
@@ -31,7 +33,7 @@ export default function (state = initialState, action = {}) {
         },
       };
     }
-    case LOGOUT_TYPE: {
+    case REMOVE_TYPE: {
       return initialState;
     }
     default: {

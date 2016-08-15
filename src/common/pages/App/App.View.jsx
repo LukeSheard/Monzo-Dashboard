@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import DevTools from 'components/DevTools';
+import Header from 'containers/Header';
 
 export default class App extends Component {
   static propTypes = {
@@ -15,6 +16,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ isMounted: true });
   }
 
@@ -27,10 +29,13 @@ export default class App extends Component {
     } = this.state;
 
     return (
-      <main>
-        {this.state.isMounted && <DevTools />}
-        {children}
-      </main>
-    )
+      <div>
+        <Header />
+        <main>
+          {this.state.isMounted && <DevTools />}
+          {children}
+        </main>
+      </div>
+    );
   }
 }

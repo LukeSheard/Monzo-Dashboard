@@ -7,10 +7,12 @@ import {
 export default () => (
   <div>
     <div>
-      Login
+      <a href="/api/forward">
+        Login
+      </a>
     </div>
     <Link to="/dashboard">
       Dashboard
     </Link>
   </div>
-)
+);

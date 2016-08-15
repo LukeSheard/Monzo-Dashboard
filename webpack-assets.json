@@ -1,0 +1,12 @@
+{
+  "javascript": {
+    "main": "/static/bundle.js"
+  },
+  "styles": {},
+  "assets": {
+    "./src/common/containers/Header/style.scss": {
+      "header": "style_header_hDt",
+      "_style": ".style_header_hDt {\n  font-size: 14px;\n}\n"
+    }
+  }
+}
