@@ -20,6 +20,7 @@ import {
 
 import configureRoutes from 'routes';
 import configureStore from 'store';
+import rootSaga from 'sagas';
 
 const mountNode = document.getElementById('react-mount');
 
@@ -33,6 +34,8 @@ match({
   routes,
   history,
 }, (error, redirectLocation, renderProps) => {
+  store.runSaga(rootSaga);
+
   render((
     <Provider store={store} >
       <Router {...renderProps} />
