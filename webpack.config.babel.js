@@ -4,14 +4,16 @@ import webpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import {
   webpackIsomorphicToolsConfig
 } from './config';
-// import ExtractTextPlugin from 'extract-text-webpack-plugin';
-
-const isomorphicPlugin = new webpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development();
 
 const {
   authUrl,
   baseUrl,
+  NODE_ENV,
 } = process.env;
+
+const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
+
+const isomorphicPlugin = new webpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
 
 const config = {
   context: path.resolve('./'),
@@ -52,7 +54,8 @@ const config = {
         loaders: [
           'isomorphic-style',
           'css?modules&localIdentName=[name]_[local]_[hash:base64:3]',
-          'postcss'
+          'postcss',
+          'sass',
         ],
       },
       {

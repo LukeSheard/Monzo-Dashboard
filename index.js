@@ -13,8 +13,9 @@ require('dotenv').config({
 const webpackIsomorphicTools = require('webpack-isomorphic-tools');
 const webpackIsomorphicToolsConfig = require('./config').webpackIsomorphicToolsConfig;
 
+const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
 global.webpack_isomorphic_tools = new webpackIsomorphicTools(webpackIsomorphicToolsConfig)
-  .development(process.env.NODE_ENV === 'development')
+  .development(_DEV_)
   .server(__dirname, () => {
     require('server').start();
   });

@@ -57,8 +57,6 @@ export default class Dashboard extends Component {
       selectedAccount,
     } = this.props;
 
-    console.log(accounts, selectedAccount);
-
     return (
       <Grid>
         <Row>

@@ -17,8 +17,6 @@ import {
   NavItem,
 } from 'react-bootstrap';
 
-import s from './style.scss';
-
 @connect((state) => ({
   loggedIn: get('session.data.token.exp', state) * 1000 > new Date().getTime(),
 }))
@@ -37,7 +35,7 @@ export default class Header extends Component {
     } = this.props;
 
     return (
-      <Navbar className={s.header}>
+      <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="/">
