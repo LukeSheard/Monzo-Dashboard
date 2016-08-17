@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 import React from 'react';
 
 import {
@@ -13,11 +15,11 @@ import {
   syncHistoryWithStore,
 } from 'react-router-redux';
 
-import configureRoutes from 'routes';
+import configureRoutes from 'routing';
 import configureStore from 'store';
 import {
   Actions as appActions,
-} from 'pages/App';
+} from 'pages/Window';
 
 import HTML from './Html';
 import waitForAll from './waitForAll';
@@ -32,7 +34,17 @@ export default (req, res) => {
   if (req.signedCookies && req.signedCookies[cookieName]) {
     const {
       issueToken,
+      refreshToken,
     } = JSON.parse(req.signedCookies[cookieName]);
+
+    const {
+      exp,
+    } = jwtDecode(issueToken);
+
+    if (exp * 1000 < new Date().getTime()) {
+      return res.redirect('/api/refresh');
+    }
+
     store.dispatch(appActions.receiveToken(issueToken));
   }
 
@@ -53,6 +65,8 @@ export default (req, res) => {
       const renderSagas = waitForAll(preloaders);
 
       return store.runSaga(renderSagas).done.then(() => {
+        webpack_isomorphic_tools.refresh();
+
         const renderComponent = (
           <HTML
             store={store}

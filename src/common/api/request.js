@@ -5,7 +5,7 @@ import {
   select,
 } from 'redux-saga/effects';
 
-import getToken from 'utils/getToken';
+import getToken from 'selectors/getToken';
 
 export default function * (url, method = 'GET', body = null) {
   const query = {
@@ -24,8 +24,15 @@ export default function * (url, method = 'GET', body = null) {
   const request = new Request(url, query);
 
   try {
-    return yield call(fetch, request);
+    const response = yield call(fetch, request);
+
+    if (response.error) {
+      throw new Error(response);
+    }
+
+    return response;
   } catch (e) {
+    console.error(e);
     throw e;
   }
 }

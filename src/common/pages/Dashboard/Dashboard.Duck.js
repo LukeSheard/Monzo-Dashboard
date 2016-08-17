@@ -1,50 +1,55 @@
-const ATTEMPT = 'DASHBOARD_ACCOUNTS_ATTEMPT';
-const FAILURE = 'DASHBOARD_ACCOUNTS_FAILURE';
-const SUCCESS = 'DASHBOARD_ACCOUNTS_SUCCESS';
+const ATTEMPT = 'DASHBOARD_TRANSACTIONS_ATTEMPT';
+const FAILURE = 'DASHBOARD_TRANSACTIONS_FAILURE';
+const SUCCESS = 'DASHBOARD_TRANSACTIONS_SUCCESS';
 
-export const attemptToRetrieveAccounts = () => ({
+export const viewTransactions = () => ({
+  type: 'viewTransactions',
+});
+viewTransactions.type = 'viewTransactions';
+
+export const attemptToRetrieveTransactions = () => ({
   type: ATTEMPT,
 });
-attemptToRetrieveAccounts.type = ATTEMPT;
+attemptToRetrieveTransactions.type = ATTEMPT;
 
-export const failureToRetrieveAccounts = (error) => ({
+export const failureToRetrieveTransactions = (error) => ({
   type: FAILURE,
   error,
 });
-failureToRetrieveAccounts.type = FAILURE;
+failureToRetrieveTransactions.type = FAILURE;
 
-export const successToRetrieveAccounts = (accounts) => ({
+export const successToRetrieveTransactions = (transactions) => ({
   type: SUCCESS,
   payload: {
-    accounts,
+    transactions,
   },
 });
-successToRetrieveAccounts.type = SUCCESS;
+successToRetrieveTransactions.type = SUCCESS;
 
 export const initialState = {
   loading: false,
-  data: {},
+  data: [],
 };
 export default function (state = initialState, action = {}) {
   switch (action.type) {
-    case attemptToRetrieveAccounts.type: {
+    case attemptToRetrieveTransactions.type: {
       return {
         ...state,
         loading: true,
       };
     }
-    case failureToRetrieveAccounts.type: {
+    case failureToRetrieveTransactions.type: {
       return {
         ...state,
         loading: false,
       };
     }
-    case successToRetrieveAccounts.type: {
+    case successToRetrieveTransactions.type: {
       return {
         ...state,
         loading: false,
-        data: action.payload.accounts,
-        selected: action.payload.accounts.length > 0 ? 0 : null,
+        page: 1,
+        data: action.payload.transactions,
       };
     }
     default: {

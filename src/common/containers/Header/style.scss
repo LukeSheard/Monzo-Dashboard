@@ -1,0 +1,16 @@
+$brand-primary: #14233C;
+
+.brand {
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  .brandLogo {
+    background: transparent;
+  }
+}
+
+.header {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  border-radius: 0px;
+}

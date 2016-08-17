@@ -12,13 +12,21 @@ import {
 } from 'react-bootstrap';
 
 import {
+  push,
+} from 'react-router-redux';
+
+import {
+  Actions as accountActions,
+} from 'pages/Account';
+
+import {
   Actions as dashboardActions,
 } from 'pages/Dashboard';
 
 @connect(() => ({}), (dispatch) => ({
   viewDashboard: (e) => {
     e.preventDefault();
-    dispatch(dashboardActions.attemptToRetrieveAccounts());
+    dispatch(dashboardActions.viewTransactions());
   },
 }))
 export default class Login extends Component {

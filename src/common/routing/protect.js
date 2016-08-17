@@ -6,11 +6,9 @@ import {
   UserAuthWrapper as authWrapper,
 } from 'redux-auth-wrapper';
 
-import Area from 'components/Area';
-
-import App, {
-  Actions as appActions,
-} from 'pages/App';
+import {
+  routerActions
+} from 'react-router-redux';
 
 const protect = authWrapper({
   // Selectors
@@ -20,7 +18,7 @@ const protect = authWrapper({
   // Redirect Options
   allowRedirectBack: false,
   failureRedirectPath: '/',
-  redirectAction: appActions.removeToken,
+  redirectAction: routerActions.replace,
 
   // Wrapper Options
   wrapperDisplayName: 'DashboardProtection',

@@ -18,7 +18,7 @@ import {
   render,
 } from 'react-dom';
 
-import configureRoutes from 'routes';
+import configureRoutes from 'routing';
 import configureStore from 'store';
 import rootSaga from 'sagas';
 

@@ -50,10 +50,17 @@ const config = {
     ],
     loaders: [
       {
+        test: isomorphicPlugin.regular_expression('images'),
+        loader: 'url',
+        query: {
+          limit: 10240,
+        },
+      },
+      {
         test: isomorphicPlugin.regular_expression('style'),
         loaders: [
-          'isomorphic-style',
-          'css?modules&localIdentName=[name]_[local]_[hash:base64:3]',
+          'style',
+          'css?modules&localIdentName=[path][name]--[local][hash:base64:3]',
           'postcss',
           'sass',
         ],

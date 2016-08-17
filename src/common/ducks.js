@@ -8,16 +8,21 @@ import {
 
 import {
   Reducer as session,
-} from 'pages/App';
+} from 'pages/Window';
 
 import {
-  Reducer as accounts,
+  Reducer as account,
+} from 'pages/Account';
+
+import {
+  Reducer as transactions,
 } from 'pages/Dashboard';
 
 const rootReducer = combineReducers({
   // App State
-  accounts,
+  account,
   session,
+  transactions,
 
   // Library State
   routing,

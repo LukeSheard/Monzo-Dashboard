@@ -3,6 +3,8 @@ import React, {
   PropTypes,
 } from 'react';
 
+import DocumentTitle from 'react-document-title';
+
 import {
   renderToStaticMarkup,
 } from 'react-dom/server';
@@ -15,7 +17,12 @@ import {
   RouterContext,
 } from 'react-router';
 
-import DocumentTitle from 'react-document-title';
+import {
+  GoogleFont,
+  TypographyStyle,
+} from 'react-typography';
+
+import typography from './typography';
 
 export default class HTML extends Component {
   static propTypes = {
@@ -49,6 +56,8 @@ export default class HTML extends Component {
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"
           />
+          <GoogleFont typography={typography} />
+          <TypographyStyle typography={typography} />
         </head>
         <body>
           <div

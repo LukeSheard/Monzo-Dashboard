@@ -1,8 +1,9 @@
 import {
-  fork,
-  join,
+  call,
 } from 'redux-saga/effects';
 
 export default (sagas) => function * () {
-  return yield sagas.map((saga) => fork(saga));
+  for (let i = 0; i < sagas.length; i += 1) {
+    yield call(sagas[i]);
+  }
 };

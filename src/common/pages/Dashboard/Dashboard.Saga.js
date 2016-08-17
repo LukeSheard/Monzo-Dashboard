@@ -1,4 +1,20 @@
 import {
+  get,
+} from 'api';
+
+import {
+  Selectors as accountSelectors,
+} from 'pages/Account';
+
+import {
+  loadAccounts,
+} from 'pages/Account/Account.Saga';
+
+import {
+  push,
+} from 'react-router-redux';
+
+import {
   takeLatest,
 } from 'redux-saga';
 
@@ -9,33 +25,34 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  get,
-} from 'api';
-
-import {
-  attemptToRetrieveAccounts,
-  failureToRetrieveAccounts,
-  successToRetrieveAccounts
+  attemptToRetrieveTransactions,
+  failureToRetrieveTransactions,
+  successToRetrieveTransactions,
+  viewTransactions,
 } from './Dashboard.Duck';
 
-export function * loadAccounts() {
+export function * loadTransactions() {
   try {
-    const {
-      accounts,
-    } = yield call(
+    const selectedAccount = yield select(accountSelectors.getSelectedAccount);
+
+    const response = yield call(
       get,
-      '/accounts'
+      '/transactions',
+      {
+        account_id: selectedAccount.id,
+        'expand[]': 'merchant',
+      }
     );
 
-    return yield put(successToRetrieveAccounts(accounts));
+    return yield put(successToRetrieveTransactions(response.transactions));
   } catch (e) {
     console.error(e);
-    return yield put(failureToRetrieveAccounts(e));
+    return yield put(failureToRetrieveTransactions(e));
   }
 }
 
 export default function * () {
   return yield [
-    takeLatest(attemptToRetrieveAccounts.type, loadAccounts),
+    takeLatest(attemptToRetrieveTransactions.type, loadTransactions),
   ];
 }
