@@ -31,9 +31,11 @@ app.use(webpackHotMiddleware(compiler));
 /*  ========================
     Routing
 ========================  */
-import router from './router';
+import api from './api';
+import render from './render';
 
-app.use(router);
+app.use('/api', api);
+app.use(render);
 
 /*  ========================
     SERVER OPERATIONS

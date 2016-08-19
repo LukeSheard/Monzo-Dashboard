@@ -18,9 +18,9 @@ import {
   render,
 } from 'react-dom';
 
-import configureRoutes from 'routing';
+import configureRoutes from 'routes';
 import configureStore from 'store';
-import rootSaga from 'sagas';
+import rootSaga from './root-saga';
 
 const mountNode = document.getElementById('react-mount');
 
