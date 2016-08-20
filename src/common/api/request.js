@@ -5,7 +5,7 @@ import {
   select,
 } from 'redux-saga/effects';
 
-import getToken from 'selectors/bearer-token';
+import getToken from 'store/session/selectors';
 
 export default function * (url, method = 'GET', body = null) {
   const query = {

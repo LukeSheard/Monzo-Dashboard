@@ -82,6 +82,11 @@ export default class Select extends Component {
         controlId={this.getControlId()}
         validationState={this.getValidationState()}
       >
+        {label ? (
+          <ControlLabel>
+            {label}
+          </ControlLabel>
+        ) : null}
         <FormControl
           componentClass="select"
           placeholder={placeholder}
@@ -89,11 +94,6 @@ export default class Select extends Component {
         >
           {children}
         </FormControl>
-        {label ? (
-          <ControlLabel>
-            {label}
-          </ControlLabel>
-        ) : null}
         {error ? (
           <HelpBlock>
             {error}

@@ -2,12 +2,13 @@ import {
   fork,
 } from 'redux-saga/effects';
 
-import {
-  watchToRetrieveAccounts,
-} from 'contexts/dashboard';
+import Saga, {
+  watcher as watchToRetrieveAccounts,
+} from 'store/accounts/saga';
 
 export default function * () {
   return yield [
+    fork(Saga),
     fork(watchToRetrieveAccounts),
   ];
 }

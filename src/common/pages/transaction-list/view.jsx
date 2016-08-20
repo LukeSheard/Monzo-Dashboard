@@ -13,7 +13,7 @@ import {
 
 import {
   Actions as accountActions,
-} from 'contexts/dashboard';
+} from 'views/dashboard';
 
 export const mapStateToProps = () => ({});
 

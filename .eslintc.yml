@@ -9,10 +9,10 @@ rules:
   no-console: 0
   react/prefer-stateless-function: 0
   global-require: 0
-  comma-dangle: 0
   no-constant-condition: 0
   no-unused-vars: 0
   max-len: 0
+  no-unused-vars: ["error", { "varsIgnorePattern": "[iI]gnored" }]
 
 settings:
   import/resolver: webpack

@@ -10,8 +10,8 @@ import {
 } from 'react-bootstrap';
 
 import Header from 'components/header';
-import loadAccounts from './saga';
-import userisAuthenticated from './helmet';
+import loadAccounts from 'store/accounts/saga';
+import userisAuthenticated from 'helmets/user-is-authenticated';
 
 @userisAuthenticated
 export default class Dashboard extends Component {

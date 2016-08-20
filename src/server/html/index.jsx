@@ -48,17 +48,28 @@ export default class HTML extends Component {
       </div>
     );
 
-    const head = Helmet.rewind();
+    const {
+      htmlAttributes,
+      title,
+      base,
+      meta,
+      link,
+      script,
+    } = Helmet.rewind();
 
     return (
-      <html>
+      <html {...htmlAttributes.toComponent()}>
         <head>
+          {base.toComponent()}
+          {meta.toComponent()}
+          {title.toComponent()}
           <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"
           />
           <GoogleFont typography={typography} />
           <TypographyStyle typography={typography} />
+          {link.toComponent()}
         </head>
         <body>
           <div
@@ -76,7 +87,7 @@ export default class HTML extends Component {
           <script
             src="/static/bundle.js"
             type="text/javascript"
-          />
+          ></script>
         </body>
       </html>
     );

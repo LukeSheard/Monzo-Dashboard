@@ -32,14 +32,17 @@ export default class App extends Component {
     return (
       <div id="mondo-app">
         <Helmet
-          base={{
-            href: '/',
-          }}
           defaultTitle="Home"
           htmlAttributes={{
             lang: 'en',
           }}
-
+          link={[
+            {
+              rel: 'icon',
+              href: require('static/mark_isolated.png'),
+              type: 'image/x-icon',
+            }
+          ]}
           meta={[
             {
               charset: 'UTF-8'
@@ -56,13 +59,6 @@ export default class App extends Component {
               name: 'Author',
               content: 'Luke Sheard'
             },
-          ]}
-          link={[
-            {
-              rel: 'icon',
-              href: require('static/mark_isolated.png'),
-              type: 'image/x-icon',
-            }
           ]}
           titleTemplate="%s | Mondo Dashboard"
         />

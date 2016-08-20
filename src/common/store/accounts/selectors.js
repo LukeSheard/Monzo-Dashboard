@@ -3,7 +3,9 @@ import {
   getOr,
 } from 'lodash/fp';
 
-import { createSelector } from 'reselect';
+import {
+  createSelector,
+} from 'reselect';
 
 export const getAccounts = createSelector(getOr([], 'accounts.data'), accounts => accounts);
 

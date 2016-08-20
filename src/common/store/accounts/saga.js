@@ -1,6 +1,4 @@
-import {
-  get,
-} from 'api';
+import sendGet from 'api/get';
 
 import {
   takeLatest,
@@ -14,13 +12,13 @@ import {
 import {
   attemptToRetrieveAccounts,
   failureToRetrieveAccounts,
-  successToRetrieveAccounts
+  successToRetrieveAccounts,
 } from './duck';
 
 export default function * loadAccounts() {
   try {
     const response = yield call(
-      get,
+      sendGet,
       '/accounts'
     );
 
@@ -33,6 +31,6 @@ export default function * loadAccounts() {
 
 export function * watcher() {
   return yield [
-    takeLatest(attemptToRetrieveAccounts.type, loadAccounts),
+    takeLatest(attemptToRetrieveAccounts().type, loadAccounts),
   ];
 }

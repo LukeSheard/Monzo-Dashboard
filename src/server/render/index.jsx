@@ -18,10 +18,10 @@ import {
 import configureRoutes from 'routes';
 import configureStore from 'store';
 import {
-  Actions as appActions,
-} from 'contexts/app';
+  receiveToken,
+} from 'store/session/duck';
 
-import HTML from './Html';
+import HTML from 'server/html';
 import waitForAll from './waitForAll';
 
 export default (req, res) => {
@@ -45,7 +45,7 @@ export default (req, res) => {
       return res.redirect('/api/refresh');
     }
 
-    store.dispatch(appActions.receiveToken(issueToken));
+    store.dispatch(receiveToken(issueToken));
   }
 
   match({

@@ -13,13 +13,18 @@ import {
 
 import {
   tokenValid,
-} from 'selectors/token';
+} from 'store/session/selectors';
 
 import {
   Nav,
   Navbar,
   NavItem,
 } from 'react-bootstrap';
+
+import {
+  IndexLinkContainer,
+  LinkContainer,
+} from 'react-router-bootstrap';
 
 import {
   Link,
@@ -66,28 +71,38 @@ export default class Header extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav activeHref={activeUrl} className={s.nav} pullRight>
-            <NavItem href="/about">
-              About
-            </NavItem>
-            {loggedIn ? (
-              <NavItem href="/dashboard">
-                Dashboard
+            <LinkContainer to="/about">
+              <NavItem href="/about">
+                About
               </NavItem>
+            </LinkContainer>
+            {loggedIn ? (
+              <IndexLinkContainer to="/dashboard">
+                <NavItem href="/dashboard">
+                  Dashboard
+                </NavItem>
+              </IndexLinkContainer>
             ) : null}
             {loggedIn ? (
-              <NavItem href="/dashboard/settings">
-                Settings
-              </NavItem>
+              <LinkContainer to="/dashboard/settings">
+                <NavItem href="/dashboard/settings">
+                  Settings
+                </NavItem>
+              </LinkContainer>
             ) : null}
             {loggedIn ? (
-              <NavItem href="/dashboard/sign-out">
-                Sign Out
-              </NavItem>
+              <LinkContainer to="/dashboard/sign-out">
+                <NavItem href="/dashboard/sign-out">
+                  Sign Out
+                </NavItem>
+              </LinkContainer>
             ) : null}
             {loggedIn ? null : (
-              <NavItem href="login">
-                Login
-              </NavItem>
+              <LinkContainer to="/login">
+                <NavItem href="/login">
+                  Login
+                </NavItem>
+              </LinkContainer>
             )}
           </Nav>
         </Navbar.Collapse>

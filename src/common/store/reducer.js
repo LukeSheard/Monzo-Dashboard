@@ -10,13 +10,8 @@ import {
   reducer as form,
 } from 'redux-form';
 
-import {
-  Reducer as session,
-} from 'contexts/app';
-
-import {
-  Reducer as accounts,
-} from 'contexts/dashboard';
+import accounts from 'store/accounts/duck';
+import session from 'store/session/duck';
 
 const rootReducer = combineReducers({
   // App State

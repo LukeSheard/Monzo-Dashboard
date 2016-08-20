@@ -7,22 +7,21 @@ import {
 } from 'react-router';
 
 // Helmets
-import userIsNotAuthenticated from './helmets/user-is-not-authenticated';
+import userIsAuthenticated from 'helmets/user-is-authenticated';
+import userIsNotAuthenticated from 'helmets/user-is-not-authenticated';
 
 // Contexts
-import App from 'contexts/app';
-import Dashboard, {
-  Helmet as userIsAuthenticated,
-} from 'contexts/dashboard';
-import Public from 'contexts/public';
+import App from 'views/app';
+import Dashboard from 'views/dashboard';
+import Public from 'views/public';
 
 // Views
-import About from 'views/about';
-import Login from 'views/login';
-import NotFound from 'views/not-found';
-import Settings from 'views/settings';
-import SignOut from 'views/sign-out';
-import TransactionList from 'views/transaction-list';
+import About from 'pages/about';
+import Login from 'pages/login';
+import NotFound from 'pages/not-found';
+import Settings from 'pages/settings';
+import SignOut from 'pages/sign-out';
+import TransactionList from 'pages/transaction-list';
 
 export default (store) => {
   const connect = (fn) => (nextState, replace) => fn(store, nextState, replace);
@@ -31,7 +30,7 @@ export default (store) => {
     <Route path="/" component={App}>
       <Route component={Public} >
         <IndexRoute
-          component={userIsNotAuthenticated(Login)}
+          component={Login}
           onEnter={connect(userIsNotAuthenticated.onEnter)}
         />
 
