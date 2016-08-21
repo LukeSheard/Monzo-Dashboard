@@ -1,6 +1,6 @@
 import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 
-export const webpackIsomorphicToolsConfig = {
+export default {
   assets: {
     images: {
       extensions: [

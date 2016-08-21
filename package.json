@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "eslint --cache src index.js webpack.config.babel.js",
     "build": "webpack --progress",
     "prestart": "npm run build",
     "start": "NODE_PATH=$NODE_PATH:./:./src:./src/common nodemon --watch src/server index.js --ignore webpack-assets.json"
@@ -57,6 +58,7 @@
     "superagent-bluebird-promise": "^3.0.2",
     "typography": "^0.12.4",
     "url-loader": "^0.5.7",
+    "webpack-configurator": "^0.3.1",
     "webpack-isomorphic-tools": "^2.5.7"
   },
   "devDependencies": {

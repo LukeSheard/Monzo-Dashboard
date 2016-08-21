@@ -76,11 +76,11 @@ const config = {
     ]
   },
   resolve: {
-    modulesDirectories: [
-      `${__dirname}/src`,
-      `${__dirname}/src/common`,
-      'node_modules'
-    ],
+    // modulesDirectories: [
+    //   `${__dirname}/src`,
+    //   `${__dirname}/src/common`,
+    //   'node_modules'
+    // ],
     extensions: [
       '',
       '.js',

@@ -35,5 +35,5 @@ export default handleActions({
   [primeAccount]: (state, action) => ({
     ...state,
     selected: action.payload,
-  })
+  }),
 }, initialState);

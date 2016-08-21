@@ -1,14 +1,13 @@
 import cookieParser from 'cookie-parser';
 import Express from 'express';
 import http from 'http';
-import path from 'path';
 
 /*  ========================
     Express Setup
 ========================  */
 const {
   COOKIE_SECRET,
-  PORT
+  PORT,
 } = process.env;
 const app = new Express();
 app.use(cookieParser(COOKIE_SECRET));
@@ -19,12 +18,12 @@ app.use(cookieParser(COOKIE_SECRET));
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from 'webpack.config.babel';
+import webpackConfig from 'webpack.config.babel'; // eslint-disable-line import/no-unresolved
 
-const compiler = webpack(webpackConfig)
+const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
-  publicPath: webpackConfig.output.publicPath
+  publicPath: webpackConfig.output.publicPath,
 }));
 app.use(webpackHotMiddleware(compiler));
 
@@ -49,7 +48,7 @@ export function start() {
       process.exit(1);
     }
 
-    console.info(`==> 🌎  Listening on port ${PORT}. Open up http://localhost:${PORT}/ in your browser.`)
+    console.info(`==> 🌎  Listening on port ${PORT}. Open up http://localhost:${PORT}/ in your browser.`);
   });
 }
 

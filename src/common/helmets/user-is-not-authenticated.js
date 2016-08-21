@@ -4,7 +4,7 @@ import {
 } from 'lodash/fp';
 
 import {
-  routerActions
+  routerActions,
 } from 'react-router-redux';
 
 import {
