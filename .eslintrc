@@ -1,14 +1,28 @@
-{
-  "parser": "babel-eslint",
-  "extends": "airbnb",
-  "rules": {
-    "no-console": 0,
-    "react/prefer-stateless-function": 0,
-    "global-require": 0,
-    "comma-dangle": 0,
-    "max-len": 0,
-  },
-  "settings": {
-    "import/resolver": webpack
-  }
-}
+parser: babel-eslint
+extends: airbnb
+
+plugins:
+  - import
+
+env:
+  browser: true
+  node: true
+
+rules:
+  global-require: 0
+
+  max-len: 0
+
+  no-console: 0
+  no-constant-condition: 0
+  no-underscore-dangle: 0
+  no-unused-vars:
+  - error
+  - varsIgnorePattern: ignored
+
+  react/prefer-stateless-function: 0
+
+  strict: 0
+
+settings:
+  import/resolver: webpack

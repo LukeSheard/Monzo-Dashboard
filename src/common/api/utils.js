@@ -3,7 +3,7 @@ import {
 } from 'querystring';
 
 const {
-  baseUrl
+  baseUrl,
 } = process.env;
 
 export const getQueryString = (query) => stringify(query);
