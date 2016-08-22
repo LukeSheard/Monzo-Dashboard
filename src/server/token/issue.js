@@ -36,21 +36,14 @@ export default function (req, res) {
         body,
       } = data;
 
-      console.log(data);
-
-      const newCookie = JSON.stringify({
-        issueToken: body.access_token,
-        refreshToken: body.refresh_token,
-      });
-
-      res.cookie(COOKIE_ACCESS_NAME, body.refresh_token, {
+      res.cookie(COOKIE_ACCESS_NAME, body.access_token, {
         domain: req.hostname,
         httpOnly: true,
         signed: true,
         maxAge: body.expires_in * 1000,
       });
 
-      return res.cookie(COOKIE_REFRESH_NAME, body.issueToken, {
+      return res.cookie(COOKIE_REFRESH_NAME, body.refresh_token, {
         domain: req.hostname,
         httpOnly: true,
         signed: true,
@@ -60,7 +53,7 @@ export default function (req, res) {
     })
     .catch((err) => {
       console.error(err);
-      res.clearCookie(COOKIE_NAME);
+
       res.redirect('/login');
     });
   }

@@ -9,6 +9,8 @@ import {
   Grid,
 } from 'react-bootstrap';
 
+import loadAccounts from 'store/accounts/saga';
+
 import Header from 'components/header';
 import userisAuthenticated from 'decorators/user-is-authenticated';
 
@@ -16,6 +18,12 @@ import userisAuthenticated from 'decorators/user-is-authenticated';
 export default class Dashboard extends Component {
   static propTypes = {
     children: PropTypes.any,
+  }
+
+  static preload() {
+    return [
+      loadAccounts,
+    ];
   }
 
   render() {

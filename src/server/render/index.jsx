@@ -1,5 +1,10 @@
 import jwtDecode from 'jwt-decode';
 
+import {
+  get,
+  isEmpty,
+} from 'lodash/fp';
+
 import React from 'react';
 
 import {
@@ -31,64 +36,58 @@ export default (req, res) => {
   const routes = configureRoutes(store);
   const history = syncHistoryWithStore(memory, store);
 
-  const cookieName = process.env.COOKIE_NAME;
-  if (req.signedCookies && req.signedCookies[cookieName]) {
-    const {
-      issueToken,
-      refreshToken,
-    } = JSON.parse(req.signedCookies[cookieName]);
+  const cookie = get(`signedCookies[${process.env.COOKIE_ACCESS_NAME}]`, req);
+  if (!isEmpty(cookie)) {
+    try {
+      const {
+        exp,
+      } = jwtDecode(cookie);
 
-    const {
-      exp,
-    } = jwtDecode(issueToken);
+      if (exp * 1000 < new Date().getTime()) {
+        return res.redirect('/api/refresh');
+      }
 
-    if (exp * 1000 < new Date().getTime()) {
-      return res.redirect('/api/refresh');
+      store.dispatch(receiveToken(cookie));
+    } catch (e) {
+      console.error(e);
+      return res.redirect('/error?code=500');
     }
-
-    store.dispatch(receiveToken(issueToken));
   }
 
-  console.log('Running Accounts Load');
-  return store.runSaga(loadAccounts).done.then(() => {
-    console.log('Matching route');
-    match({
-      history,
-      routes,
-    }, (error, redirectLocation, renderProps) => {
-      if (error) {
-        return res.status(500).send(error.message);
-      } else if (redirectLocation) {
-        return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-      } else if (renderProps) {
-        webpack_isomorphic_tools.refresh();
+	match({
+		history,
+		routes,
+	}, (error, redirectLocation, renderProps) => {
+		if (error) {
+			return res.status(500).send(error.message);
+		} else if (redirectLocation) {
+			return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+		} else if (renderProps) {
+			webpack_isomorphic_tools.refresh();
 
-        const preloaders = renderProps.components
-          .filter((component) => component && component.preload)
-          .map((component) => component.preload(renderProps.params, req))
-          .reduce((result, results) => result.concat(results), []);
+			const preloaders = renderProps.components
+				.filter((component) => component && component.preload)
+				.map((component) => component.preload(renderProps.params, req))
+				.reduce((result, results) => result.concat(results), []);
 
-        const renderSagas = waitForAll(preloaders);
+			const renderSagas = waitForAll(preloaders);
 
-        console.log('Running Preloaders');
-        return store.runSaga(renderSagas).done.then(() => {
-          const renderComponent = (
-            <HTML
-              store={store}
-              renderProps={renderProps}
-            />
-          );
+			return store.runSaga(renderSagas).done.then(() => {
+				const renderComponent = (
+					<HTML
+						store={store}
+						renderProps={renderProps}
+					/>
+				);
 
-          res.write('<!doctype HTML>');
-          res.write(renderToString(renderComponent));
-          res.status(200).end();
-        }).catch((error) => {
-          console.error(error);
-          res.write('An Error Occured').status(500).end();
-        });
-      } else {
-        return res.status(404).redirect('/');
-      }
-    });
-  });
+				res.write('<!doctype HTML>');
+				res.write(renderToString(renderComponent));
+				res.status(200).end();
+			}).catch((error) => {
+				res.write('An Error Occured').status(500).end();
+			});
+		} else {
+			return res.status(404).redirect('/');
+		}
+	});
 }

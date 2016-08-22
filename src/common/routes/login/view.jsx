@@ -9,7 +9,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <a href="api/forward">
+        <a href="/token/forward">
           Login
         </a>
       </div>

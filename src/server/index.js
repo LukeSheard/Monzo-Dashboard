@@ -30,10 +30,10 @@ app.use(webpackHotMiddleware(compiler));
 /*  ========================
     Routing
 ========================  */
-import api from './api';
+import token from './token';
 import render from './render';
 
-app.use('/api', api);
+app.use('/token', token);
 app.use(render);
 
 /*  ========================

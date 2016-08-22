@@ -64,7 +64,7 @@ export default (store) => {
       {/*
         Handle Common Thought that we login on the login page
       */}
-      <Redirect from="login" to="" />
+      <Redirect from="login" to="/" />
 
       {/*
         Give nice UX for a not-found page
