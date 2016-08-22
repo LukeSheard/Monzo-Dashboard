@@ -1,18 +1,19 @@
 import React from 'react';
 
 import {
-  // IndexRedirect,
+  IndexRedirect,
   IndexRoute,
   Redirect,
   Route,
 } from 'react-router';
 
 // decorators
+import userHasTransactions from 'decorators/user-has-transactions';
 import userIsAuthenticated from 'decorators/user-is-authenticated';
 import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 
 // // Area Component
-// import Area from 'components/area';
+import Area from 'components/area';
 
 // Contexts
 import App from 'views/app';
@@ -47,7 +48,14 @@ export default (store) => {
         onEnter={connect(userIsAuthenticated.onEnter)}
         path="dashboard"
       >
-        <IndexRoute component={Transactions} />
+        <IndexRedirect to="transactions" />
+
+        <Route
+          component={userHasTransactions(Area)}
+          path="transactions"
+        >
+          <IndexRoute component={Transactions} />
+        </Route>
 
         <Route path="settings" component={Settings} />
         <Route path="sign-out" component={SignOut} />

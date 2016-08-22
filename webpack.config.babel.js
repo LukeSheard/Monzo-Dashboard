@@ -59,7 +59,7 @@ const config = {
         test: isomorphicPlugin.regular_expression('style'),
         loaders: [
           'style',
-          'css?modules&localIdentName=[path][name]--[local][hash:base64:3]',
+          'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
           'postcss',
           'sass',
         ],

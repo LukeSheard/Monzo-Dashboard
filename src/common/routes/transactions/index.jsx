@@ -12,7 +12,9 @@ import {
   Row,
 } from 'react-bootstrap';
 
-import Transaction from 'components/transaction';
+import Balance from 'components/balance';
+import Search from 'components/search-transaction-form';
+import TransactionRow from 'components/transaction-row';
 
 import {
   getTransactions,
@@ -38,15 +40,23 @@ export default class TransactionList extends Component {
     return (
       <div>
         <Row>
-          <Col sm={6}>
-            <h1>
-              Transactions
-            </h1>
+          <Col sm={6} lg={7}>
+            <Balance />
+          </Col>
+          <Col sm={6} lg={5}>
+            <Search />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={6} lg={7}>
             <section className={s.transactionList}>
               {transactions.map((transaction) => (
-                <Transaction id={transaction.id} {...transaction} />
+                <TransactionRow key={transaction.id} {...transaction} />
               ))}
             </section>
+          </Col>
+          <Col sm={6} lg={5}>
+            stuff
           </Col>
         </Row>
       </div>

@@ -2,6 +2,8 @@ import {
   getOr,
 } from 'lodash/fp';
 
+import Moment from 'moment';
+
 import {
   createSelector,
 } from 'reselect';
@@ -13,18 +15,19 @@ export const createLoad = ({
   dedupe_id,
   description,
   id,
+  is_load,
   local_amount,
   local_currency,
   settled,
 }) => ({
-  amount,
+  amount: Math.abs(amount / 100),
   currency,
-  date: new Date(settled || created),
+  date: new Moment(settled || created),
   description,
   dupeId: dedupe_id,
   id,
-  load: true,
-  localAmount: local_amount,
+  load: is_load,
+  localAmount: Math.abs(local_amount / 100), // eslint-disable-line camelcase
   localCurrency: local_currency,
 });
 
@@ -36,27 +39,29 @@ export const createTransaction = ({
   dedupe_id,
   description,
   id,
+  is_load,
   local_amount,
   local_currency,
   merchant,
   settled,
 }) => ({
-  amount,
+  amount: Math.abs(amount / 100),
   currency,
-  data: new Date(settled || created),
+  date: new Moment(settled || created),
   decline: !!decline_reason, // eslint-disable-line camelcase
   declineReason: decline_reason,
-  description,
+  description: merchant.name || description,
   dupeId: dedupe_id,
   id,
-  localAmount: local_amount,
+  load: is_load,
+  localAmount: Math.abs(local_amount / 100), // eslint-disable-line camelcase
   localCurrency: local_currency,
   merchant,
 });
 
 export const getTransactions = createSelector(
   getOr([], 'transactions.data'),
-  transactions => transactions.map((transaction) => {
+  transactions => transactions.slice().reverse().map((transaction) => {
     switch (transaction.is_load) {
       case true: {
         return createLoad(transaction);

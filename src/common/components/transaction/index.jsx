@@ -3,31 +3,49 @@ import React, {
   PropTypes,
 } from 'react';
 
-import Load from './load';
+import Moment from 'moment';
+
+import {
+  Clearfix,
+} from 'react-bootstrap';
+
+import {
+  FormattedNumber,
+} from 'react-intl';
+
+import s from './style';
 
 export default class Transaction extends Component {
   static propTypes = {
+    amount: PropTypes.number,
+    currency: PropTypes.string,
+    date: PropTypes.instanceOf(Moment),
+    decline: PropTypes.bool,
+    declineReason: PropTypes.string,
+    description: PropTypes.string,
+    dupeId: PropTypes.string,
+    id: PropTypes.string,
     load: PropTypes.bool,
-    transaction: PropTypes.object,
+    localAmount: PropTypes.number,
+    localCurrency: PropTypes.string,
+    merchant: PropTypes.object,
   }
 
   render() {
     const {
-      load,
-      ...transaction,
+      amount,
+      currency,
+      date,
+      description,
+      localCurrency,
+      localAmount,
+      merchant,
     } = this.props;
 
-    switch (load) {
-      case true: {
-        return <Load {...transaction} />;
-      }
-      default: {
-        return (
-          <div>
-            Hello
-          </div>
-        );
-      }
-    }
+    return (
+      <Clearfix componentClass="article">
+
+      </Clearfix>
+    );
   }
 }

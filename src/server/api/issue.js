@@ -5,7 +5,8 @@ const {
   CLIENT_SECRET,
   REDIRECT_URI,
   STATE_TOKEN,
-  COOKIE_NAME,
+  COOKIE_ACCESS_NAME,
+  COOKIE_REFRESH_NAME,
   baseUrl,
 } = process.env;
 
@@ -35,16 +36,24 @@ export default function (req, res) {
         body,
       } = data;
 
+      console.log(data);
+
       const newCookie = JSON.stringify({
         issueToken: body.access_token,
         refreshToken: body.refresh_token,
       });
 
-      return res.cookie(COOKIE_NAME, newCookie, {
+      res.cookie(COOKIE_ACCESS_NAME, body.refresh_token, {
         domain: req.hostname,
         httpOnly: true,
         signed: true,
         maxAge: body.expires_in * 1000,
+      });
+
+      return res.cookie(COOKIE_REFRESH_NAME, body.issueToken, {
+        domain: req.hostname,
+        httpOnly: true,
+        signed: true,
       });
     }).then(() => {
       res.redirect('/dashboard');

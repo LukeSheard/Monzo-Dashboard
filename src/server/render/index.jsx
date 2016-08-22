@@ -17,6 +17,7 @@ import {
 
 import configureRoutes from 'routes';
 import configureStore from 'store';
+import loadAccounts from 'store/accounts/saga';
 import {
   receiveToken,
 } from 'store/session/duck';
@@ -48,38 +49,46 @@ export default (req, res) => {
     store.dispatch(receiveToken(issueToken));
   }
 
-  match({
-    history,
-    routes,
-  }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      return res.status(500).send(error.message);
-    } else if (redirectLocation) {
-      return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (renderProps) {
-      const preloaders = renderProps.components
-        .filter((component) => component && component.preload)
-        .map((component) => component.preload(renderProps.params, req))
-        .reduce((result, results) => result.concat(results), []);
-
-      const renderSagas = waitForAll(preloaders);
-
-      return store.runSaga(renderSagas).done.then(() => {
+  console.log('Running Accounts Load');
+  return store.runSaga(loadAccounts).done.then(() => {
+    console.log('Matching route');
+    match({
+      history,
+      routes,
+    }, (error, redirectLocation, renderProps) => {
+      if (error) {
+        return res.status(500).send(error.message);
+      } else if (redirectLocation) {
+        return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+      } else if (renderProps) {
         webpack_isomorphic_tools.refresh();
 
-        const renderComponent = (
-          <HTML
-            store={store}
-            renderProps={renderProps}
-          />
-        );
+        const preloaders = renderProps.components
+          .filter((component) => component && component.preload)
+          .map((component) => component.preload(renderProps.params, req))
+          .reduce((result, results) => result.concat(results), []);
 
-        res.write('<!doctype HTML>');
-        res.write(renderToString(renderComponent));
-        res.status(200).end();
-      });
-    } else {
-      return res.status(404).redirect('/');
-    }
+        const renderSagas = waitForAll(preloaders);
+
+        console.log('Running Preloaders');
+        return store.runSaga(renderSagas).done.then(() => {
+          const renderComponent = (
+            <HTML
+              store={store}
+              renderProps={renderProps}
+            />
+          );
+
+          res.write('<!doctype HTML>');
+          res.write(renderToString(renderComponent));
+          res.status(200).end();
+        }).catch((error) => {
+          console.error(error);
+          res.write('An Error Occured').status(500).end();
+        });
+      } else {
+        return res.status(404).redirect('/');
+      }
+    });
   });
 }

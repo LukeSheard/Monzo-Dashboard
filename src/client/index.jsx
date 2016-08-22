@@ -22,6 +22,14 @@ import configureRoutes from 'routes';
 import configureStore from 'store';
 import rootSaga from './root-saga';
 
+import {
+  addLocaleData,
+  IntlProvider,
+} from 'react-intl';
+import en from 'react-intl/locale-data/en';
+
+addLocaleData(en);
+
 const mountNode = document.getElementById('react-mount');
 
 const initialState = window.INITIAL_STATE || {};
@@ -38,7 +46,9 @@ match({
 
   render((
     <Provider store={store} >
-      <Router {...renderProps} />
+      <IntlProvider locale="en">
+        <Router {...renderProps} />
+      </IntlProvider>
     </Provider>
   ), mountNode);
 });

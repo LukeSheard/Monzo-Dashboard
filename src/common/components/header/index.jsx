@@ -77,8 +77,8 @@ export default class Header extends Component {
               </NavItem>
             </LinkContainer>
             {loggedIn ? (
-              <IndexLinkContainer to="/dashboard">
-                <NavItem href="/dashboard">
+              <IndexLinkContainer to="/dashboard/transactions">
+                <NavItem href="/dashboard/transactions">
                   Dashboard
                 </NavItem>
               </IndexLinkContainer>

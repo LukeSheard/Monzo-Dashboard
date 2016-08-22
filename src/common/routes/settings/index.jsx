@@ -96,7 +96,6 @@ export default class Settings extends Component {
               <Col sm={6} smPush={6}>
                 <Button
                   block
-                  bsStyle="primary"
                   type="submit"
                 >
                   Refresh

@@ -6,6 +6,13 @@ import React, {
 import Helmet from 'react-helmet';
 
 import {
+  addLocaleData,
+  IntlProvider,
+} from 'react-intl';
+import en from 'react-intl/locale-data/en';
+addLocaleData(en);
+
+import {
   renderToStaticMarkup,
 } from 'react-dom/server';
 
@@ -43,7 +50,9 @@ export default class HTML extends Component {
     const body = renderToStaticMarkup(
       <div>
         <Provider store={store}>
-          <RouterContext {...renderProps} />
+          <IntlProvider locale="en">
+            <RouterContext {...renderProps} />
+          </IntlProvider>
         </Provider>
       </div>
     );

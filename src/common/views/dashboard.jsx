@@ -10,19 +10,12 @@ import {
 } from 'react-bootstrap';
 
 import Header from 'components/header';
-import loadAccounts from 'store/accounts/saga';
 import userisAuthenticated from 'decorators/user-is-authenticated';
 
 @userisAuthenticated
 export default class Dashboard extends Component {
   static propTypes = {
     children: PropTypes.any,
-  }
-
-  static preload() {
-    return [
-      loadAccounts,
-    ];
   }
 
   render() {

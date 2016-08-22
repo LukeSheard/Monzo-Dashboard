@@ -10,9 +10,9 @@ import {
   HelpBlock,
 } from 'react-bootstrap';
 
-export default class Select extends Component {
+export default class FormField extends Component {
   static propTypes = {
-    children: PropTypes.array.isRequired,
+    children: PropTypes.array,
     error: PropTypes.string,
     invalid: PropTypes.bool,
     label: PropTypes.string,
@@ -21,11 +21,13 @@ export default class Select extends Component {
     onFocus: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     touched: PropTypes.bool,
+    type: PropTypes.string,
     value: PropTypes.any.isRequired,
   }
 
   static defaultProps = {
     placeholder: '',
+    type: 'text',
   }
 
   constructor(props) {
@@ -60,13 +62,13 @@ export default class Select extends Component {
 
   render() {
     const {
-      children,
       error,
       label,
       onBlur,
       onChange,
       onFocus,
       placeholder,
+      type,
       value,
     } = this.props;
 
@@ -88,12 +90,10 @@ export default class Select extends Component {
           </ControlLabel>
         ) : null}
         <FormControl
-          componentClass="select"
+          type={type}
           placeholder={placeholder}
           {...formProps}
-        >
-          {children}
-        </FormControl>
+        />
         {error ? (
           <HelpBlock>
             {error}
