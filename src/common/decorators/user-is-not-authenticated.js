@@ -4,7 +4,7 @@ import {
 } from 'lodash/fp';
 
 import {
-  routerActions
+  routerActions,
 } from 'react-router-redux';
 
 import {
@@ -14,13 +14,13 @@ import {
 export default userAuthWrapper({
   // Selectors
   authSelector: get('session.data.token'),
-  predicate: token => getOr(0, 'exp', token) * 1000 > new Date().getTime(),
+  predicate: token => getOr(0, 'exp', token) * 1000 <= new Date().getTime(),
 
   // Redirect Options
   allowRedirectBack: false,
-  failureRedirectPath: '/',
+  failureRedirectPath: '/dashboard',
   redirectAction: routerActions.replace,
 
   // Wrapper Options
-  wrapperDisplayName: 'DashboardContextProtection',
+  wrapperDisplayName: 'LoginRedirectWrapper',
 });

@@ -10,10 +10,13 @@ import {
 } from 'redux-saga/effects';
 
 import {
+  primeAccount,
   attemptToRetrieveAccounts,
   failureToRetrieveAccounts,
   successToRetrieveAccounts,
 } from './duck';
+
+import loadBalance from 'store/balance/saga';
 
 export default function * loadAccounts() {
   try {
@@ -22,7 +25,12 @@ export default function * loadAccounts() {
       '/accounts'
     );
 
-    return yield put(successToRetrieveAccounts(response.accounts));
+    yield [
+      put(successToRetrieveAccounts(response)),
+      put(primeAccount(0)),
+    ];
+
+    return call(loadBalance);
   } catch (e) {
     console.error(e);
     return yield put(failureToRetrieveAccounts(e));

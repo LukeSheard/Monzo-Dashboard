@@ -1,14 +1,18 @@
 import React from 'react';
 
 import {
+  // IndexRedirect,
   IndexRoute,
   Redirect,
   Route,
 } from 'react-router';
 
-// Helmets
-import userIsAuthenticated from 'helmets/user-is-authenticated';
-import userIsNotAuthenticated from 'helmets/user-is-not-authenticated';
+// decorators
+import userIsAuthenticated from 'decorators/user-is-authenticated';
+import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
+
+// // Area Component
+// import Area from 'components/area';
 
 // Contexts
 import App from 'views/app';
@@ -16,12 +20,12 @@ import Dashboard from 'views/dashboard';
 import Public from 'views/public';
 
 // Views
-import About from 'pages/about';
-import Login from 'pages/login';
-import NotFound from 'pages/not-found';
-import Settings from 'pages/settings';
-import SignOut from 'pages/sign-out';
-import TransactionList from 'pages/transaction-list';
+import About from 'routes/about';
+import Login from 'routes/login';
+import NotFound from 'routes/not-found';
+import Settings from 'routes/settings';
+import SignOut from 'routes/sign-out';
+import Transactions from 'routes/transactions';
 
 export default (store) => {
   const connect = (fn) => (nextState, replace) => fn(store, nextState, replace);
@@ -43,7 +47,7 @@ export default (store) => {
         onEnter={connect(userIsAuthenticated.onEnter)}
         path="dashboard"
       >
-        <IndexRoute component={TransactionList} />
+        <IndexRoute component={Transactions} />
 
         <Route path="settings" component={Settings} />
         <Route path="sign-out" component={SignOut} />

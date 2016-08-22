@@ -4,10 +4,9 @@ import {
 
 const {
   CLIENT_ID,
-  CLIENT_SECRET,
+  // CLIENT_SECRET,
   REDIRECT_URI,
   STATE_TOKEN,
-  COOKIE_NAME,
   authUrl,
 } = process.env;
 

@@ -1,28 +1,27 @@
 import path from 'path';
 import webpack from 'webpack';
-import webpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 import {
-  webpackIsomorphicToolsConfig
+  webpackIsomorphicToolsConfig,
 } from './config';
 
 const {
   authUrl,
   baseUrl,
-  NODE_ENV,
 } = process.env;
 
 const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
 
-const isomorphicPlugin = new webpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
+const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
 
 const config = {
   context: path.resolve('./'),
-  devtool: 'inline-source-map',
-  debug: true,
+  devtool: _DEV_ ? 'inline-source-map' : false,
+  debug: _DEV_,
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client',
-    './src/client'
+    './src/client',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -44,7 +43,7 @@ const config = {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         exclude: /node_modules/,
       },
     ],
@@ -69,17 +68,17 @@ const config = {
         test: /\.jsx?$/,
         loaders: [
           'react-hot',
-          'babel'
+          'babel',
         ],
         include: path.join(__dirname, 'src'),
       },
-    ]
+    ],
   },
   resolve: {
     modulesDirectories: [
       `${__dirname}/src`,
       `${__dirname}/src/common`,
-      'node_modules'
+      'node_modules',
     ],
     extensions: [
       '',
@@ -89,7 +88,7 @@ const config = {
       '.scss',
       '.css',
     ],
-  }
-}
+  },
+};
 
 module.exports = config;

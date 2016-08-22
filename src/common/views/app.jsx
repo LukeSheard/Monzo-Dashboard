@@ -41,23 +41,23 @@ export default class App extends Component {
               rel: 'icon',
               href: require('static/mark_isolated.png'),
               type: 'image/x-icon',
-            }
+            },
           ]}
           meta={[
             {
-              charset: 'UTF-8'
+              charset: 'UTF-8',
             },
             {
               name: 'description',
-              content: 'A Mondo dashboard application to check your online finances'
+              content: 'A Mondo dashboard application to check your online finances',
             },
             {
               name: 'keywords',
-              content: 'Mondo,GetMondo,Finance'
+              content: 'Mondo,GetMondo,Finance',
             },
             {
               name: 'Author',
-              content: 'Luke Sheard'
+              content: 'Luke Sheard',
             },
           ]}
           titleTemplate="%s | Mondo Dashboard"

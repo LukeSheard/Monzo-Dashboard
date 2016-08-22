@@ -11,12 +11,16 @@ import {
 } from 'redux-form';
 
 import accounts from 'store/accounts/duck';
+import balance from 'store/balance/duck';
 import session from 'store/session/duck';
+import transactions from 'store/transactions/duck';
 
 const rootReducer = combineReducers({
   // App State
   accounts,
+  balance,
   session,
+  transactions,
 
   // Library State
   form,

@@ -11,7 +11,7 @@ import request from 'api/request';
 export default function * get(endpoint, query) {
   const url = getUrl(endpoint, query);
 
-  const response = yield call(request, url);
+  const response = yield call(request, url, 'GET');
 
   return yield call(() => response.json());
 }

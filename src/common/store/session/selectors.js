@@ -7,7 +7,7 @@ import {
   createSelector,
 } from 'reselect';
 
-export const getBearer = createSelector(get('session.data.bearer'), token => token);
+export const getBearerToken = createSelector(get('session.data.bearer'), token => token);
 
 export const getToken = createSelector(get('session.data.token'), token => token);
 

@@ -36,15 +36,12 @@ export const formDetails = {
   ],
 };
 
-export const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    accounts: getAccounts(state),
-    initialValues: {
-      activeAccount: getSelectedIndex(state),
-    },
-  };
-};
+export const mapStateToProps = (state) => ({
+  accounts: getAccounts(state),
+  initialValues: {
+    activeAccount: getSelectedIndex(state),
+  },
+});
 
 export const mapDispatchToProps = (dispatch) => ({
   asyncValidate: ({ activeAccount }) => new Promise((resolve) => {
@@ -56,15 +53,14 @@ export const mapDispatchToProps = (dispatch) => ({
 @reduxForm(formDetails, mapStateToProps, mapDispatchToProps)
 export default class Settings extends Component {
   static propTypes = {
-    accounts: PropTypes.any,
-    // oneOfType([
-    //   PropTypes.arrayOf(PropTypes.shape({
-    //     id: PropTypes.string,
-    //     description: PropTypes.string,
-    //     created: PropTypes.string,
-    //   })),
-    //   PropTypes.array,
-    // ]),
+    accounts: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        description: PropTypes.string,
+        created: PropTypes.string,
+      })),
+      PropTypes.array,
+    ]),
     fields: PropTypes.shape({
       activeAccount: PropTypes.object,
     }),

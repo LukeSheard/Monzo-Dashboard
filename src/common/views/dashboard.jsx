@@ -11,7 +11,7 @@ import {
 
 import Header from 'components/header';
 import loadAccounts from 'store/accounts/saga';
-import userisAuthenticated from 'helmets/user-is-authenticated';
+import userisAuthenticated from 'decorators/user-is-authenticated';
 
 @userisAuthenticated
 export default class Dashboard extends Component {

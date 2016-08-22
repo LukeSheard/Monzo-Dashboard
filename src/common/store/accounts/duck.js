@@ -29,11 +29,10 @@ export default handleActions({
   }),
   [successToRetrieveAccounts]: (ignored, action) => ({
     ...initialState,
-    data: action.payload,
-    selected: 0,
+    data: action.payload.accounts,
   }),
   [primeAccount]: (state, action) => ({
     ...state,
     selected: action.payload,
-  })
+  }),
 }, initialState);

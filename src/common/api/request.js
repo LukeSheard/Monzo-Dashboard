@@ -5,7 +5,9 @@ import {
   select,
 } from 'redux-saga/effects';
 
-import getToken from 'store/session/selectors';
+import {
+  getBearerToken,
+} from 'store/session/selectors';
 
 export default function * (url, method = 'GET', body = null) {
   const query = {
@@ -13,7 +15,7 @@ export default function * (url, method = 'GET', body = null) {
     headers: new Headers({
       'Content-Type':	'application/json',
       Accept: 'application/json, */*',
-      Authorization: `Bearer ${yield select(getToken)}`,
+      Authorization: `Bearer ${yield select(getBearerToken)}`,
     }),
   };
 
