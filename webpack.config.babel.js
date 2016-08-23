@@ -8,6 +8,7 @@ import {
 const {
   authUrl,
   baseUrl,
+  GOOGLE_API_KEY,
 } = process.env;
 
 const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
@@ -35,6 +36,7 @@ const config = {
       'process.env': JSON.stringify({
         authUrl,
         baseUrl,
+        GOOGLE_API_KEY,
       }),
     }),
     isomorphicPlugin,

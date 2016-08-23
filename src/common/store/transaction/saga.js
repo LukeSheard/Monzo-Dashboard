@@ -29,8 +29,6 @@ import {
 } from './selectors';
 
 export default function * loadTransaction(action) {
-  console.log('yo?');
-
   if (get('payload.redirect', action)) {
     yield put(push({
       pathname: '/dashboard/transactions',
