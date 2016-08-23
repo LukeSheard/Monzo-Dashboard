@@ -34,7 +34,6 @@ export default function * (url, method = 'GET', body = null) {
 
     return response;
   } catch (e) {
-    console.error(e);
     throw e;
   }
 }
