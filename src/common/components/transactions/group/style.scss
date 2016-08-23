@@ -1,0 +1,14 @@
+.transactionGroup {
+  background: #ffffff;
+}
+
+.transactionGroupHeader {
+  z-index: 10;
+  background: #ffffff;
+
+  > h4 {
+    margin-bottom: 0;
+    padding: 6px 12px;
+    background: linear-gradient(to top, rgba(225, 225, 225, 0.5), rgba(242, 242, 242, 0.5));
+  }
+}

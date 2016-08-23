@@ -9,8 +9,6 @@ import {
 
 import {
   Clearfix,
-  Col,
-  Row,
 } from 'react-bootstrap';
 
 import {
@@ -49,37 +47,31 @@ export default class Balance extends Component {
     } = this.props;
 
     return (
-      <Clearfix>
-        <Row>
-          <Col sm={6}>
-            <h2 className={s.balanceInfo}>
-              <div>
-                <FormattedNumber
-                  style="currency"
-                  currency={currency}
-                  value={balance}
-                />
-              </div>
-              <small>
-                Balance
-              </small>
-            </h2>
-          </Col>
-          <Col sm={6}>
-            <h2 className={s.balanceSpend}>
-              <div>
-                <FormattedNumber
-                  style="currency"
-                  currency={currency}
-                  value={spendToday}
-                />
-              </div>
-              <small>
-                Spend Today
-              </small>
-            </h2>
-          </Col>
-        </Row>
+      <Clearfix className={s.balanceContainer}>
+        <h2 className={s.balanceInfo}>
+          <div>
+            <FormattedNumber
+              style="currency"
+              currency={currency}
+              value={balance}
+            />
+          </div>
+          <small>
+            Balance
+          </small>
+        </h2>
+        <h2 className={s.balanceSpend}>
+          <div>
+            <FormattedNumber
+              style="currency"
+              currency={currency}
+              value={spendToday}
+            />
+          </div>
+          <small>
+            Spend Today
+          </small>
+        </h2>
       </Clearfix>
     );
   }

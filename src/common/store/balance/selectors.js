@@ -17,7 +17,7 @@ export const getBalance = createSelector(get('balance.data'), ({
 }) => ({
   currency,
   balance: balance / 100,
-  spendToday: spend_today / 100,
+  spendToday: Math.abs(spend_today / 100),
   localSpend: local_spend ? local_spend.map(region => ({
     spendToday: region.spend_today,
     currency: region.currency,

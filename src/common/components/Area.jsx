@@ -5,7 +5,12 @@ import React, {
 const Area = ({
   children,
 }) => (
-  <div>
+  <div
+    style={{
+      position: 'relative',
+      height: '100%',
+    }}
+  >
     {children}
   </div>
 );

@@ -1,3 +1,14 @@
+.balanceContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: stretch;
+
+  > h2 {
+    flex-basis: 50%;
+  }
+}
+
 .balanceInfo {
   text-align: left;
 }

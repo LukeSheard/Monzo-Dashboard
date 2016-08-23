@@ -14,6 +14,8 @@ import loadAccounts from 'store/accounts/saga';
 import Header from 'components/header';
 import userisAuthenticated from 'decorators/user-is-authenticated';
 
+import s from './style';
+
 @userisAuthenticated
 export default class Dashboard extends Component {
   static propTypes = {
@@ -32,10 +34,10 @@ export default class Dashboard extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className={s.dashboardMount}>
         <Helmet title="Dashboard" />
         <Header />
-        <Grid componentClass="main">
+        <Grid componentClass="main" className={s.dashboard}>
           {children}
         </Grid>
       </div>

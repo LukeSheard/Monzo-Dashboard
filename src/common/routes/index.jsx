@@ -13,7 +13,7 @@ import userIsAuthenticated from 'decorators/user-is-authenticated';
 import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 
 // // Area Component
-import Area from 'components/area';
+// import Area from 'components/area';
 
 // Contexts
 import App from 'views/app';
@@ -50,13 +50,7 @@ export default (store) => {
       >
         <IndexRedirect to="transactions" />
 
-        <Route
-          component={userHasTransactions(Area)}
-          path="transactions"
-        >
-          <IndexRoute component={Transactions} />
-        </Route>
-
+        <Route path="transactions" component={userHasTransactions(Transactions)} />
         <Route path="settings" component={Settings} />
         <Route path="sign-out" component={SignOut} />
       </Route>

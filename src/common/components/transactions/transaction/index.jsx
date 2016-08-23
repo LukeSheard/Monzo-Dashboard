@@ -3,6 +3,10 @@ import React, {
   PropTypes,
 } from 'react';
 
+import {
+  connect,
+} from 'react-redux';
+
 import Moment from 'moment';
 
 import {
@@ -13,8 +17,23 @@ import {
   FormattedNumber,
 } from 'react-intl';
 
+// import {
+//   Link,
+// } from 'react-router';
+
 import s from './style';
 
+import {
+  attemptToRetrieveTransaction,
+} from 'store/transaction/duck';
+
+export const mapStateToProps = () => ({});
+
+export const mapDispatchToProps = (dispatch) => ({
+  onClick: (id) => () => dispatch(attemptToRetrieveTransaction(id, true)),
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class TransactionRow extends Component {
   static propTypes = {
     amount: PropTypes.number,
@@ -24,11 +43,12 @@ export default class TransactionRow extends Component {
     declineReason: PropTypes.string,
     description: PropTypes.string,
     dupeId: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
     load: PropTypes.bool,
     localAmount: PropTypes.number,
     localCurrency: PropTypes.string,
     merchant: PropTypes.object,
+    onClick: PropTypes.func.isRequired,
   }
 
   render() {
@@ -37,13 +57,15 @@ export default class TransactionRow extends Component {
       currency,
       date,
       description,
+      id,
       localCurrency,
       localAmount,
       merchant,
+      onClick,
     } = this.props;
 
     return (
-      <Clearfix componentClass="article" bsClass={s.transaction}>
+      <Clearfix componentClass="article" bsClass={s.transaction} onClick={onClick(id)}>
         {merchant && merchant.logo ? (
           <div
             className={s.merchantLogo}

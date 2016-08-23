@@ -54,6 +54,9 @@ export default function (req, res) {
     .catch((err) => {
       console.error(err);
 
+      res.clearCookie(COOKIE_ACCESS_NAME);
+      res.clearCookie(COOKIE_REFRESH_NAME);
+
       res.redirect('/login');
     });
   }

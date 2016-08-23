@@ -13,50 +13,45 @@ import {
 } from 'react-bootstrap';
 
 import Balance from 'components/balance';
-import Search from 'components/search-transaction-form';
-import TransactionRow from 'components/transaction-row';
+import TransactionList from 'components/transactions/list';
+import Transaction from 'components/transaction';
 
 import {
-  getTransactions,
-} from 'store/transactions/selectors';
+  isEmpty,
+} from 'lodash/fp';
 
-import s from './style';
+import {
+  getTransactionId,
+} from 'store/transaction/selectors';
 
 export const mapStateToProps = (state) => ({
-  transactions: getTransactions(state),
+  query: getTransactionId(state),
 });
 
 @connect(mapStateToProps)
-export default class TransactionList extends Component {
+export default class TransactionView extends Component {
   static propTypes = {
-    transactions: PropTypes.any,
+    query: PropTypes.string,
   }
 
   render() {
     const {
-      transactions,
+      query,
     } = this.props;
 
     return (
       <div>
         <Row>
-          <Col sm={6} lg={7}>
+          <Col md={6} lg={7}>
             <Balance />
-          </Col>
-          <Col sm={6} lg={5}>
-            <Search />
           </Col>
         </Row>
         <Row>
-          <Col sm={6} lg={7}>
-            <section className={s.transactionList}>
-              {transactions.map((transaction) => (
-                <TransactionRow key={transaction.id} {...transaction} />
-              ))}
-            </section>
+          <Col md={6} lg={7}>
+            <TransactionList />
           </Col>
-          <Col sm={6} lg={5}>
-            stuff
+          <Col md={6} lg={5}>
+            {isEmpty(query) ? null : <Transaction />}
           </Col>
         </Row>
       </div>
