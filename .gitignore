@@ -5,3 +5,4 @@ www/start
 .env
 webpack-assets.json
 .eslintcache
+.vscode

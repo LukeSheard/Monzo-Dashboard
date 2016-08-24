@@ -8,7 +8,6 @@ import {
 } from 'react-router';
 
 // decorators
-import userHasTransactions from 'decorators/user-has-transactions';
 import userIsAuthenticated from 'decorators/user-is-authenticated';
 import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 
@@ -18,7 +17,6 @@ import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 // Contexts
 import App from 'views/app';
 import Dashboard from 'views/dashboard';
-import Public from 'views/public';
 
 // Views
 import About from 'routes/about';
@@ -26,22 +24,20 @@ import Login from 'routes/login';
 import NotFound from 'routes/not-found';
 import Settings from 'routes/settings';
 import SignOut from 'routes/sign-out';
-import Transactions from 'routes/transactions';
+import TransactionList from 'routes/transaction-list';
 
 export default (store) => {
   const connect = (fn) => (nextState, replace) => fn(store, nextState, replace);
 
   return (
     <Route path="/" component={App}>
-      <Route component={Public} >
-        <IndexRoute
-          component={Login}
-          onEnter={connect(userIsNotAuthenticated.onEnter)}
-        />
+      <IndexRoute
+        component={Login}
+        onEnter={connect(userIsNotAuthenticated.onEnter)}
+      />
 
-        <Route path="about" component={About} />
-        <Route path="not-found" component={NotFound} />
-      </Route>
+      <Route path="about" component={About} />
+      <Route path="not-found" component={NotFound} />
 
       <Route
         component={Dashboard}
@@ -50,7 +46,7 @@ export default (store) => {
       >
         <IndexRedirect to="transactions" />
 
-        <Route path="transactions" component={userHasTransactions(Transactions)} />
+        <Route path="transactions" component={TransactionList} />
         <Route path="settings" component={Settings} />
         <Route path="sign-out" component={SignOut} />
       </Route>

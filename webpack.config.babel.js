@@ -24,6 +24,9 @@ const config = {
     'webpack-hot-middleware/client',
     './src/client',
   ],
+  eslint: {
+    configFile: './.eslintrc.yml',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',

@@ -5,13 +5,8 @@ import React, {
 
 import Helmet from 'react-helmet';
 
-import {
-  Grid,
-} from 'react-bootstrap';
-
 import loadAccounts from 'store/accounts/saga';
 
-import Header from 'components/header';
 import userisAuthenticated from 'decorators/user-is-authenticated';
 
 import s from './style';
@@ -34,12 +29,9 @@ export default class Dashboard extends Component {
     } = this.props;
 
     return (
-      <div className={s.dashboardMount}>
+      <div className={s.dashboard}>
         <Helmet title="Dashboard" />
-        <Header />
-        <Grid componentClass="main" className={s.dashboard}>
-          {children}
-        </Grid>
+        {children}
       </div>
     );
   }

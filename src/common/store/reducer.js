@@ -13,7 +13,6 @@ import {
 import accounts from 'store/accounts/duck';
 import balance from 'store/balance/duck';
 import session from 'store/session/duck';
-import transaction from 'store/transaction/duck';
 import transactions from 'store/transactions/duck';
 
 const rootReducer = combineReducers({
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
   accounts,
   balance,
   session,
-  transaction,
   transactions,
 
   // Library State

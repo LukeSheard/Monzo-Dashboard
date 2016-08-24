@@ -4,8 +4,12 @@ import {
 } from 'lodash/fp';
 
 import {
-  routerActions,
+  replace,
 } from 'react-router-redux';
+
+import {
+	removeToken,
+} from 'store/session/duck';
 
 import {
   UserAuthWrapper as userAuthWrapper,
@@ -19,7 +23,10 @@ export default userAuthWrapper({
   // Redirect Options
   allowRedirectBack: false,
   failureRedirectPath: '/',
-  redirectAction: routerActions.replace,
+  redirectAction: (newLoc) => (dispatch) => {
+    dispatch(removeToken());
+    dispatch(replace(newLoc));
+  },
 
   // Wrapper Options
   wrapperDisplayName: 'DashboardContextProtection',

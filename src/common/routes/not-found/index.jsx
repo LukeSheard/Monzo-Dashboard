@@ -14,7 +14,7 @@ export default class NotFound extends Component {
           Not Found
         </h1>
         <div>
-          <Link to="dashboard">
+          <Link to="/dashboard">
             Return Home
           </Link>
         </div>

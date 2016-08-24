@@ -52,14 +52,16 @@ export default function (req, res) {
     });
   }).then(() => {
     if (req.params.redirect) {
+      console.log(req.params.redirect);
       return res.redirect(req.params.redirect);
     }
 
-    return res.direct('/dashboard');
+    return res.redirect('/dashboard');
   })
   .catch((err) => {
     console.error(err);
 
+    res.clearCookie(COOKIE_ACCESS_NAME);
     res.clearCookie(COOKIE_REFRESH_NAME);
 
     res.redirect('/login');

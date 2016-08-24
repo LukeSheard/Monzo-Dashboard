@@ -10,10 +10,6 @@ import loadBalance, {
   watcher as watchToRetrieveBalance,
 } from 'store/balance/saga';
 
-import loadTransaction, {
-  watcher as watchToRetrieveTransaction,
-} from 'store/transaction/saga';
-
 import loadTransactions, {
   watcher as watchToRetrieveTransactions,
 } from 'store/transactions/saga';
@@ -23,7 +19,6 @@ import loadTransactions, {
 */
 export function * preloadSagas() {
   return yield [
-    fork(loadTransaction),
     fork(loadTransactions),
     fork(loadBalance),
   ];
@@ -36,7 +31,6 @@ export default function * () {
   return yield [
     fork(watchToRetrieveAccounts),
     fork(watchToRetrieveBalance),
-    fork(watchToRetrieveTransaction),
     fork(watchToRetrieveTransactions),
   ];
 }

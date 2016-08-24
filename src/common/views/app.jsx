@@ -3,9 +3,14 @@ import React, {
   PropTypes,
 } from 'react';
 
+import {
+  Grid,
+} from 'react-bootstrap';
+
 import Helmet from 'react-helmet';
 
 import DevTools from 'components/dev-tools';
+import Header from 'components/header';
 
 export default class App extends Component {
   static propTypes = {
@@ -63,7 +68,10 @@ export default class App extends Component {
           titleTemplate="%s | Mondo Dashboard"
         />
         {isMounted && <DevTools />}
-        {children}
+        <Header />
+        <Grid componentClass="main">
+					{children}
+        </Grid>
       </div>
     );
   }
