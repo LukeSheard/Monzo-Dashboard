@@ -1,39 +1,27 @@
-language: cpp
-sudo: false
+language: node_js
+node_js:
+  - "6"
+
 env:
-  - NODE_VERSION="6"
   global:
     secure: qXPq9f/cuXVJkN4QpaAVuXYK/MXocEur7n73jO6BLoonJnsogm7NsjSezReBLvRT49QyVoQsN/idr4tvvr5t3L0FCxjy/eW9mzedTBwWaibDlQ3FO8ZklXk5J8MCxRbAC5f5U3/ZAqvozKoqt+wli607fvpaB0N6/GCSt2JOtl9IzH8YIAx+Iy7uHp2NC8JkWbfimXyTAfP26i3yXpMDfohsukKtB0J3snvl4KKA929pEYPy93KGoKhSCvtaGOlY8rAqXXXUghYnn/DwUzaLSbyH+jNC3A5q4tEB1BX5I4+fM3FPwuTXtt/Q5dn0soTeSTWqLWsr3HlS+gvu8b4iZPWwu+axi2PRaribfP49f3zWS99Sq/Evx0vIaWFnVhxHCPTkNeRjexuVQbKYdwsqJpqY0NsYdm3h+zvN96ZGC2ezwQY6wpdAI/9al2XASiKrXF2K36czLNAQQ/0wDZGvOwiCJGffqoSdZANEAPyK5Q8D97Yz0M+YifDPYlgAiIeXynAtOlAbwVCVOGgDB88m61oxHVTWKdVpxYSj6L3sqkBwW0q9fixLKxX4Z8le3A4mBz7qu0yG/h+h7hR3GiJ78skl1mj53I/NDviwByf48P/YiiviFQ6n/bVlQCRusc3hC0LMm8tBEa4Va48O2V/E55gKGdjWb4L2J6o6tJicqDQ=
 os:
 - linux
+
 notifications:
   email: false
-before_install:
-- git submodule update --init --recursive
-- git clone https://github.com/creationix/nvm.git ./.nvm
-- source ./.nvm/nvm.sh
-- nvm install $NODE_VERSION
-- nvm use $NODE_VERSION
-- npm config set python `which python`
-- if [ $TRAVIS_OS_NAME == "linux" ]; then export CC="gcc-4.8"; export CXX="g++-4.8";
-  export LINK="gcc-4.8"; export LINKXX="g++-4.8"; fi
-- gcc --version
-- g++ --version
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - gcc-4.8
+
 before_script:
 - npm install
 - npm install -g codeclimate-test-reporter
+
 script:
 - npm run lint
 - npm test
+
 after_script:
 - codeclimate-test-reporter < coverage/lcov.info
+
 deploy:
   provider: heroku
   app:
