@@ -12,6 +12,6 @@ I aim to include further features made available to the app when they're launche
 ---
 
 ## Development
-[![Stories in Ready](https://badge.waffle.io/LukeSheard/Mondo-Dashboard.png?label=ready&title=Ready)](http://waffle.io/LukeSheard/Mondo-Dashboard)
 [![Build Status](https://travis-ci.org/LukeSheard/Mondo-Dashboard.svg?branch=master)](https://travis-ci.org/LukeSheard/Mondo-Dashboard)
 [![Code Climate](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard/badges/gpa.svg)](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard)
+[![Test Coverage](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard/badges/coverage.svg)](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard/coverage)
