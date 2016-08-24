@@ -1,17 +1,16 @@
----
 engines:
   duplication:
     enabled: true
     config:
       languages:
-      - javascript
+        - javascript
+        exclude_paths:
+        - "src/**/*.spec.js"
   eslint:
     enabled: true
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.js"
-  - "**.jsx"
-exclude_paths:
-  - "dist"
+    - "src/**/*.js"
+    - "src/**/*.jsx"
