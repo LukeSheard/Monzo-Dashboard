@@ -6,3 +6,5 @@ www/start
 webpack-assets.json
 .eslintcache
 .vscode
+coverage
+.nyc_output

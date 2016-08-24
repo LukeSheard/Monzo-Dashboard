@@ -10,8 +10,9 @@
     "start": "better-npm-run start",
     "prestart:dev": "npm run build",
     "start:dev": "better-npm-run start:dev",
+    "test:quick": "better-npm-run test:quick",
     "pretest": "npm run lint",
-    "test": "NODE_PATH=$NODE_PATH:./:./src:./src/common ./node_modules/.bin/babel-tap src/**/*.spec.js"
+    "test": "better-npm-run test"
   },
   "betterScripts": {
     "lint": {
@@ -34,10 +35,16 @@
         "NODE_PATH": "./:./src:./src/common"
       }
     },
-    "test": {
+    "test:quick": {
       "command": "babel-tap src/**/*.spec.js",
       "env": {
         "NODE_ENV": "development",
+        "NODE_PATH": "./:./src:./src/common"
+      }
+    },
+    "test": {
+      "command": "babel-tap src/**/*.spec.js --cov --coverage-report=lcov",
+      "env": {
         "NODE_PATH": "./:./src:./src/common"
       }
     }
