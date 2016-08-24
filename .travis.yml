@@ -1,28 +1,22 @@
 language: cpp
 sudo: false
 env:
-  - export NODE_VERSION="6"
+- export NODE_VERSION="6"
 os:
-  - linux
-
+- linux
 notifications:
   email: false
-
 before_install:
-  - git submodule update --init --recursive
-  - git clone https://github.com/creationix/nvm.git ./.nvm
-  - source ./.nvm/nvm.sh
-  - nvm install $NODE_VERSION
-  - nvm use $NODE_VERSION
-  - npm config set python `which python`
-  - if [ $TRAVIS_OS_NAME == "linux" ]; then
-      export CC="gcc-4.8";
-      export CXX="g++-4.8";
-      export LINK="gcc-4.8";
-      export LINKXX="g++-4.8";
-    fi
-  - gcc --version
-  - g++ --version
+- git submodule update --init --recursive
+- git clone https://github.com/creationix/nvm.git ./.nvm
+- source ./.nvm/nvm.sh
+- nvm install $NODE_VERSION
+- nvm use $NODE_VERSION
+- npm config set python `which python`
+- if [ $TRAVIS_OS_NAME == "linux" ]; then export CC="gcc-4.8"; export CXX="g++-4.8";
+  export LINK="gcc-4.8"; export LINKXX="g++-4.8"; fi
+- gcc --version
+- g++ --version
 addons:
   apt:
     sources:
@@ -30,9 +24,14 @@ addons:
     packages:
     - g++-4.8
     - gcc-4.8
-
 before_script:
-  - npm install
+- npm install
 script:
-  - npm run lint
-  - npm test
+- npm run lint
+- npm test
+deploy:
+  provider: heroku
+  app:
+    master: mondo-dashboard
+  api_key:
+    secure: bxlfUhZAdu4HLOIF97mWOsZVmd+j9X21+eKTByqsGKVhgwzpQRKcJCr1SolweYWhy61udOVnNS75Jojzm54PBgtq/CNaNwyZyJLszsUcGmjrjhniu2XgUrqhq6qlhO3ouZHQzs4cGqXamXYUHf4h1p2wnL3g9/FqulesTl1HUJVMr1mTjh3FhLBXLgeiQDUw94jEd6pd+Oacnbj4AklgMqQSIl4iXT9JG4snPMORFiANVLLe8kLaJTBsZKJy0qBSEywQFHGcIW7qUnnH5vEVFdCBOmSu3/1vXrEZJMCP8Amy6PLKFA1ejUDEi1NA88lMUiDcco8L57mO0qQqSbBxYbQNk4P7GTwpk9wlEkH6hm4iNFBswWbXZxQ9sBmnd8ZfiMXwjrK4FcqBY10veuhcCXFlCMd8lz26KEl0dgb1S1vOsM9w1adhPQrQxi42Qx3OwdmyhZNj8gubypJjRWesyxqj07n7jYVlFvPrHy42aMAUpKMJUB37k3bTyg5zKfNff36DUjp9rg0VNpWYEfUQEBszjRB51ZQXwvgZ+3Vvhw3lCkKuoI0l72Pglbe6gAIb1uSfX1vIA/hILYgN/U7Cy0muiDuin/tCjkRVL7FqSMU1gN8aY1lxL/dRTAqoXNyBDaLRMiI1uQESzU8vH3GaGZ9YQ7p0eVVh6TnsQp7kZr8=
