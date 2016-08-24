@@ -16,18 +16,18 @@ export function start() {
     PORT,
   } = process.env;
 
-  const trueEnvVars = [
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URI,
-    STATE_TOKEN,
-    GOOGLE_API_KEY,
-  ].some(isEmpty);
-
-  if (trueEnvVars) {
-    throw new Error('Process Variables are not set');
-    process.exit(1);
-  }
+  [
+    ['CLIENT_ID', CLIENT_ID],
+    ['CLIENT_SECRET', CLIENT_SECRET],
+    ['REDIRECT_URI', REDIRECT_URI],
+    ['STATE_TOKEN', STATE_TOKEN],
+    ['GOOGLE_API_KEY', GOOGLE_API_KEY],
+  ].forEach(([name, variable]) => {
+    if (isEmpty(variable)) {
+      console.error(`${name} is not set`);
+      process.exit(1);
+    }
+  });
 
   server = http.createServer(app).listen(PORT, (err) => {
     if (err) {
