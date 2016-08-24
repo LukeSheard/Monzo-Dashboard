@@ -9,10 +9,20 @@ notifications:
   email: false
 
 before_install:
-  - curl -o ~/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh # update nvm
-  - bash -c "nvm use $NODE_VERSION" || true
-  - bash -c "source ~/.nvm/nvm.sh; nvm install $NODE_VERSION; node --version"
-# node 4 depends on gcc 4.8
+  - git submodule update --init --recursive
+  - git clone https://github.com/creationix/nvm.git ./.nvm
+  - source ./.nvm/nvm.sh
+  - nvm install $NODE_VERSION
+  - nvm use $NODE_VERSION
+  - npm config set python `which python`
+  - if [ $TRAVIS_OS_NAME == "linux" ]; then
+      export CC="gcc-4.8";
+      export CXX="g++-4.8";
+      export LINK="gcc-4.8";
+      export LINKXX="g++-4.8";
+    fi
+  - gcc --version
+  - g++ --version
 addons:
   apt:
     sources:
