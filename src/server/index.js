@@ -1,46 +1,34 @@
-import cookieParser from 'cookie-parser';
-import Express from 'express';
 import http from 'http';
+import {
+  isEmpty,
+} from 'lodash/fp';
 
-/*  ========================
-    Express Setup
-========================  */
-const {
-  COOKIE_SECRET,
-  PORT,
-} = process.env;
-const app = new Express();
-app.use(cookieParser(COOKIE_SECRET));
+import app from './app';
 
-/*  ========================
-    WEBPACK SETUP
-========================  */
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from 'webpack.config.babel'; // eslint-disable-line import/no-unresolved
-
-const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath,
-}));
-app.use(webpackHotMiddleware(compiler));
-
-/*  ========================
-    Routing
-========================  */
-import token from './token';
-import render from './render';
-
-app.use('/token', token);
-app.use(render);
-
-/*  ========================
-    SERVER OPERATIONS
-========================  */
 let server;
 export function start() {
+  const {
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI,
+    STATE_TOKEN,
+    GOOGLE_API_KEY,
+    PORT,
+  } = process.env;
+
+  const trueEnvVars = [
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI,
+    STATE_TOKEN,
+    GOOGLE_API_KEY,
+  ].some(isEmpty);
+
+  if (trueEnvVars) {
+    throw new Error('Process Variables are not set');
+    process.exit(1);
+  }
+
   server = http.createServer(app).listen(PORT, (err) => {
     if (err) {
       server.close();

@@ -11,6 +11,11 @@ import {
   StickyContainer,
 } from 'react-sticky';
 
+import {
+  Col,
+  Row,
+} from 'react-bootstrap';
+
 import TransactionGroup from 'components/transaction-list/group';
 
 import {
@@ -35,14 +40,28 @@ export default class TransactionList extends Component {
     } = this.props;
 
     return (
-      <StickyContainer className={s.transactionList}>
-        {transactionGroups.map((date) => (
-          <TransactionGroup
-            key={date}
-            date={date}
-          />
-        ))}
-      </StickyContainer>
+      <div>
+        <Row>
+          <Col xs={12}>
+            Filter Places
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={2}>
+            Timeline
+          </Col>
+          <Col xs={10}>
+            <StickyContainer className={s.transactionList}>
+              {transactionGroups.map((date) => (
+                <TransactionGroup
+                  key={date}
+                  date={date}
+                />
+              ))}
+            </StickyContainer>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
