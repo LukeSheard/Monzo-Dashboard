@@ -11,6 +11,7 @@
     "start": "better-npm-run start",
     "prestart:dev": "npm run build",
     "start:dev": "better-npm-run start:dev",
+    "pretest": "npm run lint",
     "test": "NODE_PATH=$NODE_PATH:./:./src:./src/common ./node_modules/.bin/babel-tap src/**/*.spec.js"
   },
   "betterScripts": {
