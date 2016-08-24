@@ -8,10 +8,33 @@
     "prebuild": "npm run lint",
     "build": "webpack --progress",
     "prestart": "npm run build",
-    "start": "NODE_PATH=$NODE_PATH:./:./src:./src/common node index.js",
+    "start": "better-npm-run start",
     "prestart:dev": "npm run build",
-    "start:dev": "NODE_PATH=$NODE_PATH:./:./src:./src/common nodemon --ignore webpack-assets.json",
+    "start:dev": "better-npm-run start:dev",
     "test": "NODE_PATH=$NODE_PATH:./:./src:./src/common ./node_modules/.bin/babel-tap src/**/*.spec.js"
+  },
+  "betterScripts": {
+    "start": {
+      "command": "node index.js",
+      "env": {
+        "NODE_ENV": "production",
+        "NODE_PATH": "./:./src:./src/common"
+      }
+    },
+    "start:dev": {
+      "command": "nodemon --ignore webpack-assets.json",
+      "env": {
+        "NODE_ENV": "development",
+        "NODE_PATH": "./:./src:./src/common"
+      }
+    },
+    "test": {
+      "command": "babel-tap src/**/*.spec.js",
+      "env": {
+        "NODE_ENV": "development",
+        "NODE_PATH": "./:./src:./src/common"
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -29,6 +52,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
+    "better-npm-run": "0.0.11",
     "bluebird": "^3.4.1",
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.23.1",
@@ -39,6 +63,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jwt-decode": "^2.1.0",
     "moment": "^2.14.1",
+    "node-sass": "^3.8.0",
     "postcss-loader": "^0.10.0",
     "react": "^15.3.0",
     "react-bootstrap": "^0.30.2",
@@ -58,6 +83,7 @@
     "redux-saga": "^0.11.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.3",
+    "sass-loader": "^4.0.0",
     "superagent": "^2.2.0",
     "typography": "^0.12.4",
     "url-loader": "^0.5.7",
