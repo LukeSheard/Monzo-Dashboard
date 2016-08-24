@@ -25,7 +25,7 @@ rules:
   no-console: 0
   no-constant-condition: 0
   no-underscore-dangle: 0
-  no-unused-vars: 
+  no-unused-vars:
   - 2
   - varsIgnorePattern: ignored
   react/prefer-stateless-function: 0
