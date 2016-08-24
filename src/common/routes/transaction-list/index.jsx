@@ -15,7 +15,7 @@ import {
 import userHasTransactions from 'decorators/user-has-transactions';
 
 import Balance from 'components/balance';
-import TransactionList from 'components/transaction-list';
+import TransactionList from 'components/transaction-list/container';
 
 @userHasTransactions
 export default class TransactionListView extends Component {
