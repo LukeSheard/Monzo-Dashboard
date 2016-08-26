@@ -19,21 +19,19 @@ export default function * (url, method = 'GET', body = null) {
     }),
   };
 
-  if (body !== null) {
+  if (method !== 'GET' && body !== null) {
     query.body = body;
   }
 
   const request = new Request(url, query);
 
-  try {
-    const response = yield call(fetch, request);
+  const response = yield call(fetch, request);
 
-    if (response.error) {
-      throw new Error(response);
-    }
-
-    return response;
-  } catch (e) {
-    throw e;
+  // TODO: Deal with error codes
+  if (response.error) {
+    const error = response.error;
+    throw new Error(error.message ? error.message : 'There was an error');
   }
+
+  return response;
 }

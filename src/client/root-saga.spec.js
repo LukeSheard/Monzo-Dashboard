@@ -82,4 +82,6 @@ test('Sagas: Preload Saga', (t) => {
     actual, expected,
     'Saga collects data from Mondo api'
   );
+
+  t.end();
 });

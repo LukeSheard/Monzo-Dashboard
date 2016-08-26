@@ -30,7 +30,7 @@ export default function * loadAccounts() {
       put(primeAccount(0)),
     ];
 
-    return call(loadBalance);
+    return yield call(loadBalance);
   } catch (e) {
     console.error(e);
     return yield put(failureToRetrieveAccounts(e));

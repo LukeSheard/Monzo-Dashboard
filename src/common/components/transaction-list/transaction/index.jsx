@@ -13,6 +13,8 @@ import {
   FormattedNumber,
 } from 'react-intl';
 
+import s from './style';
+
 export default class TransactionListTransaction extends Component {
   static propTypes = {
     amount: PropTypes.number,
@@ -37,7 +39,7 @@ export default class TransactionListTransaction extends Component {
     } = this.props;
 
     return (
-      <Clearfix componentClass="article">
+      <Clearfix componentClass="article" className={s.transactionContainer}>
         <summary>
           <h3>
             {description}
