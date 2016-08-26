@@ -22,6 +22,6 @@ export const getBalance = createSelector(get('balance.data'), ({
     spendToday: region.spend_today,
     currency: region.currency,
   })) : [],
-  localCurrency: local_currency,
-  localExchangeRate: local_exchange_rate,
+  localCurrency: local_currency || currency,
+  localExchangeRate: local_exchange_rate || 1,
 }));

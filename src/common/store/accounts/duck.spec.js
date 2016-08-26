@@ -7,11 +7,11 @@ import reducer, {
   successToRetrieveAccounts,
 } from './duck';
 
-test('Reducers: Reducer', (t) => {
+test('Reducers: Accounts', (t) => {
   let action;
   let expected;
   let actual;
-  t.plan(6);
+  t.plan(7);
 
   expected = {
     loading: false,
@@ -21,6 +21,13 @@ test('Reducers: Reducer', (t) => {
   t.deepEqual(
     actual, expected,
     'Initial state should have correct shape'
+  );
+
+  expected = 'function';
+  actual = typeof reducer;
+  t.equal(
+    actual, expected,
+    'Reducer should be a function'
   );
 
   expected = initialState;

@@ -25,12 +25,11 @@ export default function * loadAccounts() {
       '/accounts'
     );
 
-    yield [
+    return yield [
       put(successToRetrieveAccounts(response)),
       put(primeAccount(0)),
+      call(loadBalance),
     ];
-
-    return yield call(loadBalance);
   } catch (e) {
     console.error(e);
     return yield put(failureToRetrieveAccounts(e));
