@@ -51,7 +51,7 @@ export default class TransactionList extends Component {
             Timeline
           </Col>
           <Col xs={10}>
-            <StickyContainer className={s.transactionList}>
+            <StickyContainer className={s.transactionList} topOffset={50}>
               {transactionGroups.map((date) => (
                 <TransactionGroup
                   key={date}
