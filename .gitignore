@@ -1,7 +1,6 @@
 node_modules
 *.log
 dist
-www/start
 .env
 webpack-assets.json
 .eslintcache

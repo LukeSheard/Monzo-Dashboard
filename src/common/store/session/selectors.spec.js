@@ -5,7 +5,14 @@ import {
   tokenValid,
 } from './selectors';
 
-const bearer = 'THIS IS THE BEARER STRING';
+import jwt from 'jsonwebtoken';
+
+
+const bearer = jwt.sign({
+  hello: 'World',
+}, 'test', {
+  expiresIn: '1h',
+});
 const token = {
   exp: new Date().getTime(),
 };
@@ -39,7 +46,7 @@ test('Selectors: Session', (t) => {
   );
 
   actual = tokenValid(state);
-  expected = false;
+  expected = true;
   t.equal(
     actual, expected,
     'tokenValid should correctly check the validity of the token'

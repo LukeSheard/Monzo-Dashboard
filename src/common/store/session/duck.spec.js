@@ -5,11 +5,14 @@ import reducer, {
   removeToken,
 } from './duck';
 
+import jwt from 'jsonwebtoken';
+import jwtDecode from 'jwt-decode';
+
 test('Reducers: Sesseion', (t) => {
   let action;
   let actual;
   let expected;
-  t.plan(4);
+  t.plan(5);
 
   expected = {
     loading: false,
@@ -35,8 +38,23 @@ test('Reducers: Sesseion', (t) => {
     'Reducer should return initial state'
   );
 
-  // TODO: receiveToken test
-  action = receiveToken();
+  const bearer = jwt.sign({
+    hello: 'World',
+  }, 'secret', {
+    expiresIn: '1h',
+  });
+  action = receiveToken(bearer);
+  expected = {
+    data: {
+      bearer,
+      token: jwtDecode(bearer),
+    },
+  };
+  actual = reducer({}, action);
+  t.deepEqual(
+    actual, expected,
+    'Saga should decode JWT token'
+  );
 
   const state = {
     random: 'This should not exist',
