@@ -1,5 +1,4 @@
 import {
-  get,
   getOr,
 } from 'lodash/fp';
 
@@ -11,9 +10,13 @@ import {
   UserAuthWrapper as userAuthWrapper,
 } from 'redux-auth-wrapper';
 
+import {
+  getToken,
+} from 'store/session/selectors';
+
 export default userAuthWrapper({
   // Selectors
-  authSelector: get('session.data.token'),
+  authSelector: getToken,
   predicate: token => getOr(0, 'exp', token) * 1000 <= new Date().getTime(),
 
   // Redirect Options

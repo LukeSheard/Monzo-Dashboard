@@ -15,7 +15,7 @@ import {
   successToRetrieveAccounts,
 } from 'store/accounts/duck';
 
-const initialState = {
+export const initialState = {
   loading: false,
   data: [],
 };
@@ -31,7 +31,7 @@ export default handleActions({
   [failureToRetrieveTransactions]: (state, action) => ({
     ...state,
     loading: false,
-    error: action.payload,
+    error: action.payload.message,
   }),
   [successToRetrieveTransactions]: (ignored, action) => ({
     ...initialState,

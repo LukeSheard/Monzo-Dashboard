@@ -11,7 +11,7 @@ export const attemptToRetrieveBalance = createAction(ATTEMPT);
 export const failureToRetrieveBalance = createAction(FAILURE, err => new Error(err));
 export const successToRetrieveBalance = createAction(SUCCESS);
 
-const initialState = {
+export const initialState = {
   loading: false,
   data: {},
 };
@@ -23,7 +23,7 @@ export default handleActions({
   [failureToRetrieveBalance]: (state, action) => ({
     ...state,
     loading: false,
-    error: action.payload,
+    error: action.payload.message,
   }),
   [successToRetrieveBalance]: (ignored, action) => ({
     ...initialState,

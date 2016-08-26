@@ -10,10 +10,10 @@ const PRIME = 'ACCOUNTS_PRIME';
 
 export const attemptToRetrieveAccounts = createAction(ATTEMPT);
 export const failureToRetrieveAccounts = createAction(FAILURE, err => new Error(err));
-export const successToRetrieveAccounts = createAction(SUCCESS);
+export const successToRetrieveAccounts = createAction(SUCCESS, ({ accounts }) => accounts);
 export const primeAccount = createAction(PRIME);
 
-const initialState = {
+export const initialState = {
   loading: false,
   data: {},
 };
@@ -25,11 +25,11 @@ export default handleActions({
   [failureToRetrieveAccounts]: (state, action) => ({
     ...state,
     loading: false,
-    error: action.payload,
+    error: action.payload.message,
   }),
   [successToRetrieveAccounts]: (ignored, action) => ({
     ...initialState,
-    data: action.payload.accounts,
+    data: action.payload,
   }),
   [primeAccount]: (state, action) => ({
     ...state,

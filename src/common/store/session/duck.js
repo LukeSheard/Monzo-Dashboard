@@ -11,7 +11,7 @@ import {
 export const receiveToken = createAction(RECEIVE);
 export const removeToken = createAction(REMOVE);
 
-const initialState = {
+export const initialState = {
   loading: false,
   data: {},
 };

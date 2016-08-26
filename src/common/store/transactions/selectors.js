@@ -11,6 +11,7 @@ import {
 
 export const createTransaction = ({
   amount,
+  category,
   created,
   currency,
   decline_reason,
@@ -23,6 +24,7 @@ export const createTransaction = ({
 }, load = false, decline = false) => {
   const transaction = {
     amount: Math.abs(amount / 100),
+    category,
     currency,
     date: new Moment(created),
     description: merchant && merchant.name ? merchant.name : description,

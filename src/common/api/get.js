@@ -9,9 +9,14 @@ import {
 import request from 'api/request';
 
 export default function * get(endpoint, query) {
-  const url = getUrl(endpoint, query);
+  const url = yield call(getUrl, endpoint, query);
 
   const response = yield call(request, url, 'GET');
 
-  return yield call(() => response.json());
+  const responseJson = yield call([
+    response,
+    response.json,
+  ]);
+
+  return responseJson;
 }

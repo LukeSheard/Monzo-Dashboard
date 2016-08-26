@@ -21,9 +21,9 @@ import {
 } from 'store/accounts/selectors';
 
 export default function * loadBalance() {
-  const selectedAccount = yield select(getSelectedAccount);
-
   try {
+    const selectedAccount = yield select(getSelectedAccount);
+
     const response = yield call(
       sendGet,
       '/balance',
@@ -34,7 +34,6 @@ export default function * loadBalance() {
 
     return yield put(successToRetrieveBalance(response));
   } catch (e) {
-    console.error(e);
     return yield put(failureToRetrieveBalance(e));
   }
 }

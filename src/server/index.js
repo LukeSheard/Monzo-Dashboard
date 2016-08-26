@@ -10,7 +10,6 @@ export function start() {
   const {
     CLIENT_ID,
     CLIENT_SECRET,
-    REDIRECT_URI,
     STATE_TOKEN,
     GOOGLE_API_KEY,
     PORT,
@@ -19,7 +18,6 @@ export function start() {
   [
     ['CLIENT_ID', CLIENT_ID],
     ['CLIENT_SECRET', CLIENT_SECRET],
-    ['REDIRECT_URI', REDIRECT_URI],
     ['STATE_TOKEN', STATE_TOKEN],
     ['GOOGLE_API_KEY', GOOGLE_API_KEY],
   ].forEach(([name, variable]) => {
