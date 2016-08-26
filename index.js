@@ -3,7 +3,9 @@ require('babel-register');
 require('babel-polyfill');
 
 // Load user configuration
-require('dotenv').config();
+require('dotenv').config({
+  silent: true,
+});
 require('dotenv').config({
   path: './.env.default',
 });

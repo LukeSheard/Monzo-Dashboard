@@ -9,6 +9,7 @@ import {
 
 import {
   goBack,
+  push,
 } from 'react-router-redux';
 
 import {
@@ -20,21 +21,31 @@ import {
   Row,
 } from 'react-bootstrap';
 
+import {
+  removeToken,
+} from 'store/session/duck';
+
 export const mapStateToProps = () => ({});
 
 export const mapDispatchToProps = (dispatch) => ({
   onCancel: () => dispatch(goBack()),
+  signOut: () => {
+    dispatch(removeToken());
+    dispatch(push('/'));
+  },
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SignOut extends Component {
   static propTypes = {
     onCancel: PropTypes.func,
+    signOut: PropTypes.func,
   }
 
   render() {
     const {
       onCancel,
+      signOut,
     } = this.props;
 
     return (
@@ -49,14 +60,14 @@ export default class SignOut extends Component {
             </p>
           </Row>
           <Row>
-            <Col sm={4} smOffset={1}>
-              <Button block bsStyle="danger" onClick={onCancel}>
-                Cancel
+            <Col sm={4} smOffset={2} onClick={signOut}>
+              <Button block bsStyle="danger">
+                Confirm
               </Button>
             </Col>
-            <Col sm={4} smOffset={2}>
-              <Button block bsStyle="primary">
-                Confirm
+            <Col sm={4} smOffset={1}>
+              <Button block bsStyle="primary" onClick={onCancel}>
+                Cancel
               </Button>
             </Col>
           </Row>

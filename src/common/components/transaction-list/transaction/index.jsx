@@ -5,6 +5,14 @@ import React, {
 
 import Moment from 'moment';
 
+import {
+  Clearfix,
+} from 'react-bootstrap';
+
+import {
+  FormattedNumber,
+} from 'react-intl';
+
 export default class TransactionListTransaction extends Component {
   static propTypes = {
     amount: PropTypes.number,
@@ -23,13 +31,26 @@ export default class TransactionListTransaction extends Component {
 
   render() {
     const {
+      amount,
+      currency,
       description,
     } = this.props;
 
     return (
-      <div>
-        {description}
-      </div>
+      <Clearfix componentClass="article">
+        <summary>
+          <h3>
+            {description}
+          </h3>
+        </summary>
+        <main>
+          <FormattedNumber
+            style="currency"
+            currency={currency}
+            value={amount}
+          />
+        </main>
+      </Clearfix>
     );
   }
 }

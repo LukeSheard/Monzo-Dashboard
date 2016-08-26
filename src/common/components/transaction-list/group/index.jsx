@@ -12,6 +12,10 @@ import {
 } from 'react-redux';
 
 import {
+  FormattedDate,
+} from 'react-intl';
+
+import {
   getTransactionsFromGroup,
 } from 'store/transactions/selectors';
 
@@ -40,7 +44,12 @@ export default class TransactionGroup extends Component {
       <section className={s.transactionGroup}>
         <Sticky className={s.transactionGroupHeader} topOffset={65}>
           <h4>
-            {date}
+            <FormattedDate
+              value={date}
+              day="2-digit"
+              month="short"
+              weekday="long"
+            />
           </h4>
         </Sticky>
         <main className={s.transactionGroupContent}>
