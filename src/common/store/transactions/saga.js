@@ -35,7 +35,6 @@ export default function * loadTransactions() {
 
     return yield put(successToRetrieveTransactions(response));
   } catch (e) {
-    console.error(e);
     return yield put(failureToRetrieveTransactions(e));
   }
 }

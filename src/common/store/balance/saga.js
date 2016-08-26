@@ -34,7 +34,6 @@ export default function * loadBalance() {
 
     return yield put(successToRetrieveBalance(response));
   } catch (e) {
-    console.error(e);
     return yield put(failureToRetrieveBalance(e));
   }
 }

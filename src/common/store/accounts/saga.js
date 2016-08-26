@@ -31,7 +31,6 @@ export default function * loadAccounts() {
       call(loadBalance),
     ];
   } catch (e) {
-    console.error(e);
     return yield put(failureToRetrieveAccounts(e));
   }
 }
