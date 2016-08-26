@@ -37,7 +37,7 @@ Variable Name | Default | Description
 
 
 ## Development
-This app was authored in Node 6, however it still supports earlier versions. To install Node
+This app was authored in Node 6.x, however it still supports 5.x. To install Node
 refrer to their installation guide at [https://nodejs.org](nodejs.org), or use a shell extension
 like [NVM](http://github.com/NVM). It is an isomorphic [React](https://reactjs.com) application
 using [Redux][(https://redux.com)].
