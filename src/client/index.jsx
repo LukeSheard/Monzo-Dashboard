@@ -30,6 +30,8 @@ import {
 } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 
+import './style';
+
 addLocaleData(en);
 
 const mountNode = document.getElementById('react-mount');

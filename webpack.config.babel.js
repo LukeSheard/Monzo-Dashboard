@@ -61,12 +61,20 @@ const config = {
         },
       },
       {
-        test: isomorphicPlugin.regular_expression('style'),
+        test: isomorphicPlugin.regular_expression('sass'),
         loaders: [
-          'style-loader',
+          'style',
           'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
           'postcss',
           'sass',
+        ],
+      },
+      {
+        test: isomorphicPlugin.regular_expression('css'),
+        loaders: [
+          'style',
+          'css',
+          'postcss',
         ],
       },
       {

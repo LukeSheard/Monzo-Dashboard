@@ -6,6 +6,19 @@
   ],
   "plugins": [
     "transform-decorators-legacy",
-    "transform-runtime",
-  ]
+    "transform-runtime"
+  ],
+  "env": {
+    "EXAMPLE": {
+      "plugins": [
+        [
+          "babel-plugin-webpack-loaders",
+          {
+            "config": "./webpack.config.babel.js",
+            "verbose": false
+          }
+        ]
+      ]
+    }
+  }
 }

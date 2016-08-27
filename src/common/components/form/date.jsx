@@ -5,14 +5,17 @@ import React, {
 
 import {
   ControlLabel,
-  FormControl,
   FormGroup,
   HelpBlock,
 } from 'react-bootstrap';
 
-export default class Select extends Component {
+import Moment from 'moment';
+
+import DatePicker from 'react-bootstrap-date-picker';
+
+export default class DateField extends Component {
   static propTypes = {
-    children: PropTypes.array.isRequired,
+    children: PropTypes.array,
     error: PropTypes.string,
     invalid: PropTypes.bool,
     label: PropTypes.string,
@@ -22,10 +25,13 @@ export default class Select extends Component {
     placeholder: PropTypes.string,
     touched: PropTypes.bool,
     value: PropTypes.any.isRequired,
+    todayButton: PropTypes.bool,
   }
 
   static defaultProps = {
     placeholder: '',
+    value: new Moment(),
+    todayButton: false,
   }
 
   constructor(props) {
@@ -60,35 +66,48 @@ export default class Select extends Component {
 
   render() {
     const {
-      children,
       error,
       label,
-      onBlur,
-      onChange,
-      onFocus,
-      placeholder,
-      value,
+      // onBlur,
+      // onChange,
+      // onFocus,
+      // placeholder,
+      // value,
+      // todayButton,
     } = this.props;
 
-    const formProps = {
-      onBlur,
-      onChange,
-      onFocus,
-      value,
-    };
+    // const formProps = {
+    //   onBlur,
+    //   onChange,
+    //   onFocus,
+    //   selected: value,
+    //   placeholderText: placeholder,
+    //   todayButton,
+    // };
 
     return (
       <FormGroup
         controlId={this.getControlId()}
         validationState={this.getValidationState()}
       >
-        <FormControl
-          componentClass="select"
-          placeholder={placeholder}
-          {...formProps}
-        >
-          {children}
-        </FormControl>
+        <DatePicker
+          className="form-control"
+          onChange={(v) => {
+            console.log('change');
+            console.log(v);
+            // onChange(v);
+          }}
+          onFocus={(v) => {
+            console.log('focus');
+            console.log(v);
+            // onFocus(v);
+          }}
+          onBlur={(v) => {
+            console.log('blur');
+            console.log(v);
+            // onBlur(v);
+          }}
+        />
         {label ? (
           <ControlLabel>
             {label}

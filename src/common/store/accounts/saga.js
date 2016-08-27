@@ -37,6 +37,6 @@ export default function * loadAccounts() {
 
 export function * watcher() {
   return yield [
-    takeLatest(attemptToRetrieveAccounts().type, loadAccounts),
+    call(takeLatest, attemptToRetrieveAccounts().type, loadAccounts),
   ];
 }

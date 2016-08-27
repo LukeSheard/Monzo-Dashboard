@@ -25,3 +25,5 @@ export const getBalance = createSelector(get('balance.data'), ({
   localCurrency: local_currency || currency,
   localExchangeRate: local_exchange_rate || 1,
 }));
+
+export default getBalance;

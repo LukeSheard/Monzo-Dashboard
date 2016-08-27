@@ -40,6 +40,6 @@ export default function * loadBalance() {
 
 export function * watcher() {
   return yield [
-    takeLatest(attemptToRetrieveBalance().type, loadBalance),
+    call(takeLatest, attemptToRetrieveBalance().type, loadBalance),
   ];
 }

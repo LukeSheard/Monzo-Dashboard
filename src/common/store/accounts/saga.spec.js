@@ -104,7 +104,7 @@ test('Sagas: Accounts - Watcher', (t) => {
   let actual;
   let expected;
 
-  t.plan(2);
+  t.plan(3);
 
   // Saga is an iterator
   expected = 'function';
@@ -120,12 +120,12 @@ test('Sagas: Accounts - Watcher', (t) => {
   // TODO: Implement this task
   actual = saga.next().value;
   expected = [
-    takeLatest(attemptToRetrieveAccounts().type, loadAccounts),
+    call(takeLatest, attemptToRetrieveAccounts().type, loadAccounts),
   ];
-  // t.deepEqual(
-  //   actual, expected,
-  //   'Saga should take all attempt actions'
-  // );
+  t.deepEqual(
+    actual, expected,
+    'Saga should take all attempt actions'
+  );
 
   actual = saga.next().done;
   expected = true;

@@ -84,16 +84,16 @@ export default class FormField extends Component {
         controlId={this.getControlId()}
         validationState={this.getValidationState()}
       >
-        {label ? (
-          <ControlLabel>
-            {label}
-          </ControlLabel>
-        ) : null}
         <FormControl
           type={type}
           placeholder={placeholder}
           {...formProps}
         />
+        {label ? (
+          <ControlLabel>
+            {label}
+          </ControlLabel>
+        ) : null}
         {error ? (
           <HelpBlock>
             {error}

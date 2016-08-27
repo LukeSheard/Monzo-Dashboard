@@ -16,6 +16,7 @@ import {
   Row,
 } from 'react-bootstrap';
 
+import TransactionFilters from 'components/transaction-list/filters';
 import TransactionGroup from 'components/transaction-list/group';
 
 import {
@@ -43,15 +44,15 @@ export default class TransactionList extends Component {
       <div>
         <Row>
           <Col xs={12}>
-            Filter Places
+            <TransactionFilters />
           </Col>
         </Row>
         <Row>
-          <Col xs={2}>
+          <Col xs={3} lg={2}>
             Timeline
           </Col>
-          <Col xs={10}>
-            <StickyContainer className={s.transactionList} topOffset={50}>
+          <Col xs={9} lg={10}>
+            <StickyContainer className={s.transactionList}>
               {transactionGroups.map((date) => (
                 <TransactionGroup
                   key={date}

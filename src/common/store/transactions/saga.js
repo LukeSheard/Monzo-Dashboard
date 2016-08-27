@@ -41,6 +41,6 @@ export default function * loadTransactions() {
 
 export function * watcher() {
   return yield [
-    takeLatest(attemptToRetrieveTransactions().type, loadTransactions),
+    call(takeLatest, attemptToRetrieveTransactions().type, loadTransactions),
   ];
 }

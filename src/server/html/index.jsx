@@ -10,7 +10,6 @@ import {
   IntlProvider,
 } from 'react-intl';
 import en from 'react-intl/locale-data/en';
-addLocaleData(en);
 
 import {
   renderToStaticMarkup,
@@ -30,6 +29,8 @@ import {
 } from 'react-typography';
 
 import typography from './typography';
+
+addLocaleData(en);
 
 export default class HTML extends Component {
   static propTypes = {
@@ -67,7 +68,7 @@ export default class HTML extends Component {
     } = Helmet.rewind();
 
     return (
-      <html {...htmlAttributes.toComponent()}>
+      <html lang="en" {...htmlAttributes.toComponent()}>
         <head>
           {base.toComponent()}
           {meta.toComponent()}
@@ -86,7 +87,7 @@ export default class HTML extends Component {
             dangerouslySetInnerHTML={{
               __html: body,
             }}
-          ></div>
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `window.INITIAL_STATE = ${JSON.stringify(store.getState())}`,

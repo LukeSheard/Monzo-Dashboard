@@ -1,5 +1,5 @@
 import test from 'tape';
-import loadBalance, {
+import loadTransactions, {
   watcher,
 } from './saga';
 
@@ -16,27 +16,28 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  attemptToRetrieveBalance,
-  failureToRetrieveBalance,
-  successToRetrieveBalance,
+  attemptToRetrieveTransactions,
+  failureToRetrieveTransactions,
+  successToRetrieveTransactions,
 } from './duck';
 
 import {
   getSelectedAccount,
 } from 'store/accounts/selectors';
 
-const id = 12345;
 const selectedAccount = {
-  id,
-};
-const responseGood = {
-  data: 'yay!',
-};
-const responseBad = {
-  data: 'Nooo!',
+  id: 12355,
 };
 
-test('Sagas: Balance - success', (t) => {
+const response = {
+  transactions: [
+    {
+      stuff: 'STUFF',
+    },
+  ],
+};
+
+test('Sagas: Transactions', (t) => {
   let actual;
   let expected;
 
@@ -44,37 +45,38 @@ test('Sagas: Balance - success', (t) => {
 
   // Saga is an iterator
   expected = 'function';
-  actual = typeof loadBalance()[Symbol.iterator];
+  actual = typeof loadTransactions()[Symbol.iterator];
 
   t.equal(
     actual, expected,
     'Saga is an iterator'
   );
 
-  const saga = loadBalance();
+  const saga = loadTransactions();
 
   actual = saga.next().value;
   expected = select(getSelectedAccount);
   t.deepEqual(
     actual, expected,
-    'Saga should get account from state'
+    'Saga should get selected account'
   );
 
   actual = saga.next(selectedAccount).value;
   expected = call(
     sendGet,
-    '/balance',
+    '/transactions',
     {
-      account_id: id,
+      'expand[]': 'merchant',
+      account_id: selectedAccount.id,
     }
   );
   t.deepEqual(
     actual, expected,
-    'Saga should make request'
+    'Saga should get transactions from API'
   );
 
-  actual = saga.next(responseGood).value;
-  expected = put(successToRetrieveBalance(responseGood));
+  actual = saga.next(response).value;
+  expected = put(successToRetrieveTransactions(response));
   t.deepEqual(
     actual, expected,
     'Saga should put data to state'
@@ -90,26 +92,23 @@ test('Sagas: Balance - success', (t) => {
   t.end();
 });
 
-test('Sagas: Balance - Failure', (t) => {
+const error = 'YO STUFF';
+test('Sagas: Transactions - Declined', (t) => {
   let actual;
   let expected;
 
-  t.plan(3);
+  t.plan(2);
 
-  const saga = loadBalance();
+  const saga = loadTransactions();
 
-  actual = saga.next().value;
-  expected = select(getSelectedAccount);
+  saga.next();
+  saga.next(selectedAccount);
+
+  actual = saga.throw(error).value;
+  expected = put(failureToRetrieveTransactions(error));
   t.deepEqual(
     actual, expected,
-    'Saga should get account from state'
-  );
-
-  actual = saga.throw(responseBad).value;
-  expected = put(failureToRetrieveBalance(responseBad));
-  t.deepEqual(
-    actual, expected,
-    'Saga should put failure to state'
+    'Saga should put data to state'
   );
 
   actual = saga.next().done;
@@ -122,7 +121,7 @@ test('Sagas: Balance - Failure', (t) => {
   t.end();
 });
 
-test('Sagas: Balance - Watcher', (t) => {
+test('Sagas: Transactions - Watcher', (t) => {
   let actual;
   let expected;
 
@@ -142,7 +141,7 @@ test('Sagas: Balance - Watcher', (t) => {
   // TODO: Implement this task
   actual = saga.next().value;
   expected = [
-    call(takeLatest, attemptToRetrieveBalance().type, loadBalance),
+    call(takeLatest, attemptToRetrieveTransactions().type, loadTransactions),
   ];
   t.deepEqual(
     actual, expected,
