@@ -5,6 +5,28 @@ import {
   style_loader_path_extractor,
 } from 'webpack-isomorphic-tools/plugin';
 
+const filter = (module, regex, options, log) => {
+  if (options.development) {
+    return style_loader_filter(module, regex, options, log);
+  }
+  return regex.test(module.name)
+}
+
+const path = (module, options, log) => {
+  if (options.development) {
+    return style_loader_path_extractor(module, options, log);
+  }
+  return module.name;
+}
+
+const parser = (loader) => (module, options, log) => {
+  if (options.development) {
+    return loader(module, options, log);
+  }
+
+  return module.source;
+}
+
 export const webpackIsomorphicToolsConfig = {
   assets: {
     images: {
@@ -20,49 +42,17 @@ export const webpackIsomorphicToolsConfig = {
       extensions: [
         'scss',
       ],
-      filter: function(module, regex, options, log) {
-        if (options.development) {
-          return style_loader_filter(module, regex, options, log);
-        }
-        return regex.test(module.name)
-      },
-      path: function(module, options, log) {
-        if (options.development) {
-          return style_loader_path_extractor(module, options, log);
-        }
-        return module.name;
-      },
-      parser: function(module, options, log) {
-        if (options.development) {
-          return css_modules_loader_parser(module, options, log);
-        }
-
-        return module.source;
-      },
+      filter,
+      path,
+      parser: parser(css_modules_loader_parser),
     },
     css: {
       extensions: [
         'css',
       ],
-      filter: function(module, regex, options, log) {
-        if (options.development) {
-          return style_loader_filter(module, regex, options, log);
-        }
-        return regex.test(module.name)
-      },
-      path: function(module, options, log) {
-        if (options.development) {
-          return style_loader_path_extractor(module, options, log);
-        }
-        return module.name;
-      },
-      parser: function(module, options, log) {
-        if (options.development) {
-          return css_loader_parser(module, options, log);
-        }
-
-        return module.source;
-      },
+      filter,
+      path,
+      parser: parser(css_loader_parser),
     },
   },
 };

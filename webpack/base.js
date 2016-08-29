@@ -1,9 +1,5 @@
 import path from 'path';
 import Webpack from 'webpack';
-import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import {
-  webpackIsomorphicToolsConfig,
-} from './config';
 
 const {
   authUrl,
@@ -13,9 +9,6 @@ const {
 } = process.env;
 
 const _ENV_ = NODE_ENV || 'development';
-const _DEV_ = _ENV_ !== 'production';
-
-const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
 
 export default (config) => {
   const directory = process.cwd();
@@ -44,9 +37,6 @@ export default (config) => {
         '.css',
       ],
     },
-    plugins: [
-      isomorphicPlugin,
-    ],
   });
 
   config.plugin('definePlugin', Webpack.DefinePlugin, [{
@@ -58,22 +48,10 @@ export default (config) => {
     }),
   }]);
 
-  config.plugin('optimize', Webpack.optimize.OccurenceOrderPlugin, [
-    true,
-  ]);
-
   config.preLoader('lint', {
     test: /\.jsx?$/,
     loader: 'eslint-loader',
     exclude: /node_modules/,
-  });
-
-  config.loader('images', {
-    test: isomorphicPlugin.regular_expression('images'),
-    loader: 'url',
-    query: {
-      limit: 10240,
-    },
   });
 
   return config;

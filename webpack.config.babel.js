@@ -6,6 +6,7 @@ const {
 
 import baseMixin from './webpack/base';
 import developmentMixin from './webpack/development';
+import productionMixin from './webpack/production';
 
 const config = webpackMultiConfigurator()
 .define('base')
@@ -13,7 +14,11 @@ const config = webpackMultiConfigurator()
 .define('development')
   .append('base')
   .append(developmentMixin)
-.create(NODE_ENV)
+.define('production')
+  .append('base')
+  .append(productionMixin)
+.create(process.env)
+.include(process.env.NODE_ENV)
 .otherwise('development')
 .resolve()[0];
 

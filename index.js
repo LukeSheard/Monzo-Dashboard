@@ -7,7 +7,7 @@ require('dotenv').config({
   silent: true,
 });
 require('dotenv').config({
-  path: './.env.default',
+  path: './.env-default',
 });
 
 // Start the Server

@@ -22,9 +22,20 @@ export default (config) => {
       'webpack-hot-middleware/client',
       './src/client',
     ],
+    plugins: [
+      isomorphicPlugin,
+    ],
   });
 
   config.plugin('hotmodule', webpack.HotModuleReplacementPlugin);
+
+  config.loader('images', {
+    test: isomorphicPlugin.regular_expression('images'),
+    loader: 'url',
+    query: {
+      limit: 10240,
+    },
+  });
 
   config.loader('sass', {
     test: isomorphicPlugin.regular_expression('sass'),
