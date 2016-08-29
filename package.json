@@ -22,7 +22,7 @@
   },
   "betterScripts": {
     "lint": {
-      "command": "eslint --ext .jsx,.js src/** index.js webpack.config.babel.js",
+      "command": "eslint --ext .jsx,.js src/** webpack/** index.js webpack.config.babel.js",
       "env": {
         "NODE_PATH": "./:./src:./src/common"
       }
