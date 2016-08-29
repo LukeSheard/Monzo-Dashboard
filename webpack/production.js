@@ -21,7 +21,7 @@ export default (config) => {
   ]);
 
   config.plugin('ExtractTextPlugin', ExtractTextPlugin, [
-    'style.css'
+    'style.css',
   ]);
 
   config.loader('images', {
@@ -55,4 +55,4 @@ export default (config) => {
   });
 
   return config;
-}
+};

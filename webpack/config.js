@@ -1,33 +1,42 @@
+/* eslint-disable camelcase */
 import {
-  css_loader_parser,
-  css_modules_loader_parser,
-  style_loader_filter,
-  style_loader_path_extractor,
+  css_loader_parser as cssLoaderParser,
+  css_modules_loader_parser as cssModulesLoaderParser,
+  style_loader_filter as styleLoaderFilter,
+  style_loader_path_extractor as styleLoaderPathExtractor,
 } from 'webpack-isomorphic-tools/plugin';
+
+/* eslint-enable */
 
 const filter = (module, regex, options, log) => {
   if (options.development) {
-    return style_loader_filter(module, regex, options, log);
+    return styleLoaderFilter(module, regex, options, log);
   }
-  return regex.test(module.name)
-}
+  return regex.test(module.name);
+};
 
 const path = (module, options, log) => {
   if (options.development) {
-    return style_loader_path_extractor(module, options, log);
+    return styleLoaderPathExtractor(module, options, log);
   }
   return module.name;
-}
+};
 
 const parser = (loader) => (module, options, log) => {
   if (options.development) {
     return loader(module, options, log);
   }
-
   return module.source;
-}
+};
+
+const {
+  NODE_ENV,
+} = process.env;
+
+const _DEV_ = (NODE_ENV || 'development') === 'development';
 
 export const webpackIsomorphicToolsConfig = {
+  debug: _DEV_,
   assets: {
     images: {
       extensions: [
@@ -44,7 +53,7 @@ export const webpackIsomorphicToolsConfig = {
       ],
       filter,
       path,
-      parser: parser(css_modules_loader_parser),
+      parser: parser(cssModulesLoaderParser),
     },
     css: {
       extensions: [
@@ -52,7 +61,7 @@ export const webpackIsomorphicToolsConfig = {
       ],
       filter,
       path,
-      parser: parser(css_loader_parser),
+      parser: parser(cssLoaderParser),
     },
   },
 };

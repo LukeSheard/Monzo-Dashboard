@@ -1,9 +1,5 @@
 import webpackMultiConfigurator from 'webpack-multi-configurator';
 
-const {
-  NODE_ENV,
-} = process.env;
-
 import baseMixin from './webpack/base';
 import developmentMixin from './webpack/development';
 import productionMixin from './webpack/production';
