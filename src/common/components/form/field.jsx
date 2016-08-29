@@ -23,9 +23,11 @@ export default class FormField extends Component {
     touched: PropTypes.bool,
     type: PropTypes.string,
     value: PropTypes.any.isRequired,
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
+    disabled: false,
     placeholder: '',
     type: 'text',
   }
@@ -62,6 +64,7 @@ export default class FormField extends Component {
 
   render() {
     const {
+      disabled,
       error,
       label,
       onBlur,
@@ -88,6 +91,7 @@ export default class FormField extends Component {
           type={type}
           placeholder={placeholder}
           {...formProps}
+          disabled={disabled}
         />
         {label ? (
           <ControlLabel>

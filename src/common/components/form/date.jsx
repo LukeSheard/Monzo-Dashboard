@@ -1,3 +1,7 @@
+import {
+  isEmpty,
+} from 'lodash/fp';
+
 import React, {
   Component,
   PropTypes,
@@ -11,11 +15,13 @@ import {
 
 import Moment from 'moment';
 
-import DatePicker from 'react-bootstrap-date-picker';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default class DateField extends Component {
   static propTypes = {
     children: PropTypes.array,
+    dateFormat: PropTypes.string,
     error: PropTypes.string,
     invalid: PropTypes.bool,
     label: PropTypes.string,
@@ -26,9 +32,12 @@ export default class DateField extends Component {
     touched: PropTypes.bool,
     value: PropTypes.any.isRequired,
     todayButton: PropTypes.bool,
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
+    dateFormat: 'L',
+    disabled: false,
     placeholder: '',
     value: new Moment(),
     todayButton: false,
@@ -66,24 +75,32 @@ export default class DateField extends Component {
 
   render() {
     const {
+      disabled,
       error,
+      dateFormat,
       label,
-      // onBlur,
-      // onChange,
-      // onFocus,
-      // placeholder,
-      // value,
-      // todayButton,
+      onBlur,
+      onChange,
+      onFocus,
+      placeholder,
+      value,
+      todayButton,
     } = this.props;
 
-    // const formProps = {
-    //   onBlur,
-    //   onChange,
-    //   onFocus,
-    //   selected: value,
-    //   placeholderText: placeholder,
-    //   todayButton,
-    // };
+    const formProps = {
+      onBlur,
+      onChange,
+      onFocus,
+      placeholderText: placeholder,
+    };
+
+    if (!isEmpty(value)) {
+      formProps.selected = value;
+    }
+
+    if (todayButton) {
+      formProps.todayButton = 'Today';
+    }
 
     return (
       <FormGroup
@@ -92,21 +109,12 @@ export default class DateField extends Component {
       >
         <DatePicker
           className="form-control"
-          onChange={(v) => {
-            console.log('change');
-            console.log(v);
-            // onChange(v);
+          {...formProps}
+          onBlur={(e) => {
+            const blurredValue = new Moment(e.target.value, dateFormat);
+            onBlur(blurredValue.isValid ? blurredValue : value);
           }}
-          onFocus={(v) => {
-            console.log('focus');
-            console.log(v);
-            // onFocus(v);
-          }}
-          onBlur={(v) => {
-            console.log('blur');
-            console.log(v);
-            // onBlur(v);
-          }}
+          disabled={disabled}
         />
         {label ? (
           <ControlLabel>

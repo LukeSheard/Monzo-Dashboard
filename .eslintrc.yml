@@ -1,10 +1,10 @@
 ---
 parser: babel-eslint
 parserOptions:
-	ecmaVersion: 7
-	ecmaFeatures:
-		jsx: true
-	sourceType: module
+  ecmaVersion: 7
+  ecmaFeatures:
+    jsx: true
+  sourceType: module
 
 extends: airbnb
 
@@ -33,4 +33,3 @@ rules:
 
 settings:
   import/resolver: webpack
-

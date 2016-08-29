@@ -42,13 +42,14 @@ export default class TransactionGroup extends Component {
 
     return (
       <section className={s.transactionGroup}>
-        <Sticky className={s.transactionGroupHeader} topOffset={65}>
+        <Sticky className={s.transactionGroupHeader} topOffset={-5}>
           <h4>
             <FormattedDate
               value={date}
               day="2-digit"
               month="short"
               weekday="long"
+              year="numeric"
             />
           </h4>
         </Sticky>

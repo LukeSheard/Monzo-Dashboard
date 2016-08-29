@@ -13,6 +13,8 @@ import {
   FormattedNumber,
 } from 'react-intl';
 
+import TransactionImage from './image';
+
 import s from './style';
 
 export default class TransactionListTransaction extends Component {
@@ -36,10 +38,16 @@ export default class TransactionListTransaction extends Component {
       amount,
       currency,
       description,
+      load,
+      merchant,
     } = this.props;
 
     return (
       <Clearfix componentClass="article" className={s.transactionContainer}>
+        <TransactionImage
+          load={load}
+          {...merchant}
+        />
         <summary>
           <h3>
             {description}

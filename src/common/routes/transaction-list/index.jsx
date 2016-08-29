@@ -1,6 +1,11 @@
 import React, {
   Component,
+  PropTypes,
 } from 'react';
+
+import {
+  connect,
+} from 'react-redux';
 
 import {
   Col,
@@ -15,11 +20,30 @@ import {
 import userHasTransactions from 'decorators/user-has-transactions';
 
 import Balance from 'components/balance';
-import TransactionList from 'components/transaction-list/container';
+import TransactionGroup from 'components/transaction-list/group';
+
+import {
+  getGroupedTransactionsDates,
+} from 'store/transactions/selectors';
+
+import s from './style';
+
+export const mapStateToProps = (state) => ({
+  transactionGroups: getGroupedTransactionsDates(state),
+});
 
 @userHasTransactions
+@connect(mapStateToProps)
 export default class TransactionListView extends Component {
+  static propTypes = {
+    transactionGroups: PropTypes.array,
+  }
+
   render() {
+    const {
+      transactionGroups,
+    } = this.props;
+
     return (
       <StickyContainer style={{ zIndex: 4 }}>
         <Row>
@@ -27,7 +51,14 @@ export default class TransactionListView extends Component {
             <Sticky style={{ zIndex: 3 }} >
               <Balance />
             </Sticky>
-            <TransactionList />
+            <StickyContainer className={s.transactionList}>
+              {transactionGroups.map((date) => (
+                <TransactionGroup
+                  key={date}
+                  date={date}
+                />
+              ))}
+            </StickyContainer>
           </Col>
         </Row>
       </StickyContainer>

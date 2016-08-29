@@ -24,21 +24,13 @@ export const reduxFormProps = {
   ],
 };
 
-export const mapStateToProps = () => ({});
-
-export const mapDispatchToProps = () => ({
-  onSubmit: (values) => console.log(values),
-});
-
-@reduxForm(reduxFormProps, mapStateToProps, mapDispatchToProps)
+@reduxForm(reduxFormProps)
 export default class TransactionFilters extends Component {
   static propTypes = {
     fields: PropTypes.shape({
       startDate: PropTypes.object,
       endDate: PropTypes.object,
     }),
-    handleSubmit: PropTypes.func.isRequired,
-    resetForm: PropTypes.func.isRequired,
   }
 
   render() {
@@ -47,47 +39,30 @@ export default class TransactionFilters extends Component {
         startDate,
         endDate,
       },
-      handleSubmit,
-      resetForm,
     } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <Row>
-          <Col xs={6} md={3}>
+          <Col xs={6} md={4}>
             <DateField
               label="Start Date"
               {...startDate}
+              todayButton
+              disabled
             />
           </Col>
-          <Col xs={6} md={3}>
+          <Col xs={6} md={4}>
             <DateField
               label="End Date"
-              todayButton
               {...endDate}
+              todayButton
+              disabled
             />
           </Col>
-          <Col xs={4} md={2}>
+          <Col xs={12} md={4}>
             <Button block disabled>
               Advanced
-            </Button>
-          </Col>
-          <Col xs={4} md={2}>
-            <Button
-              block
-              type="reset"
-              onClick={resetForm}
-            >
-              Reset
-            </Button>
-          </Col>
-          <Col xs={4} md={2}>
-            <Button
-              block
-              bsStyle="primary"
-              type="submit"
-            >
-              Submit
             </Button>
           </Col>
         </Row>
