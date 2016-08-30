@@ -14,6 +14,9 @@ on the iOS app. However there are plans to include further features such as
 
 I aim to include further features made available to the app when they're launched in the API.
 
+## Deploy Your Own Version
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Running the app
 To launch the app you will need to get a Monzo develop client key. This app is isomorphic and does
 not expose your client secret and thus you can use refresh tokens; thus you can select the

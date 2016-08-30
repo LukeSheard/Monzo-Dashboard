@@ -45,7 +45,6 @@
     },
     "PORT": {
       "description": "Desired Server port",
-      "value": 8080,
       "required": false
     }
   }
