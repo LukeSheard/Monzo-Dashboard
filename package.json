@@ -10,6 +10,7 @@
     "lint": "better-npm-run lint",
     "prebuild": "rm -rf dist",
     "build": "better-npm-run build",
+    "prestart": "ls -l",
     "start": "better-npm-run start",
     "prestart:dev": "better-npm-run prestart:dev",
     "start:dev": "better-npm-run start:dev",
