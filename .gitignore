@@ -3,6 +3,7 @@ node_modules
 dist
 .env
 webpack-assets.json
+webpack-stats.json
 .eslintcache
 .vscode
 coverage
