@@ -16,6 +16,14 @@ const {
 } = process.env;
 
 const _ENV_ = NODE_ENV || 'development';
+const _DEV_ = _ENV_ !== 'production';
+
+import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import {
+  webpackIsomorphicToolsConfig,
+} from './config';
+
+const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
 
 export default (config) => {
   const directory = process.cwd();
@@ -38,6 +46,9 @@ export default (config) => {
         '.jsx',
       ],
     },
+    plugins: [
+      isomorphicPlugin,
+    ],
   });
 
   config.plugin('definePlugin', Webpack.DefinePlugin, [{

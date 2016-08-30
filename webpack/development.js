@@ -18,9 +18,6 @@ export default (config) => {
     eslint: {
       configFile: './.eslintrc.yml',
     },
-    plugins: [
-      isomorphicPlugin,
-    ],
   });
 
   config.plugin('hotmodule', webpack.HotModuleReplacementPlugin);
