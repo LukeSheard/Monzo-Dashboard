@@ -41,7 +41,7 @@ export default function (history, initialState = {}) {
 
   if (module.hot) {
     module.hot.accept('./reducer', () => {
-      const nextRootReducer = require('./reducer').default;
+      const nextRootReducer = require('./reducer').default; // eslint-disable-line import/newline-after-import
       store.replaceReducer(nextRootReducer);
     });
   }

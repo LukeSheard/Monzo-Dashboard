@@ -20,7 +20,7 @@ import {
   getSelectedAccount,
 } from 'store/accounts/selectors';
 
-export default function * loadBalance() {
+export default function* loadBalance() {
   try {
     const selectedAccount = yield select(getSelectedAccount);
 
@@ -38,7 +38,7 @@ export default function * loadBalance() {
   }
 }
 
-export function * watcher() {
+export function* watcher() {
   return yield [
     call(takeLatest, attemptToRetrieveBalance().type, loadBalance),
   ];

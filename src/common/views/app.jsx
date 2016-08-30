@@ -9,13 +9,13 @@ import {
 
 import Helmet from 'react-helmet';
 
+import DevTools from 'components/dev-tools';
+import Header from 'components/header';
+
 const {
   NODE_ENV,
 } = process.env;
 const _DEV_ = (NODE_ENV || 'development') !== 'production';
-
-import DevTools from 'components/dev-tools';
-import Header from 'components/header';
 
 export default class App extends Component {
   static propTypes = {

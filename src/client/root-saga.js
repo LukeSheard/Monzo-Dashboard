@@ -17,7 +17,7 @@ import loadTransactions, {
 /*
   Load User Data from Server
 */
-export function * preloadSagas() {
+export function* preloadSagas() {
   return yield [
     fork(loadTransactions),
     fork(loadBalance),
@@ -27,7 +27,7 @@ export function * preloadSagas() {
 /*
   Watch for User Refreshes,
 */
-export default function * () {
+export default function* () {
   return yield [
     fork(watchToRetrieveAccounts),
     fork(watchToRetrieveBalance),

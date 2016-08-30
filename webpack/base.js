@@ -1,10 +1,13 @@
+import dotenv from 'dotenv';
 import path from 'path';
 import Webpack from 'webpack';
+import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
+import webpackIsomorphicToolsConfig from './config';
 
-require('dotenv').config({
+dotenv.config({
   silent: true,
 });
-require('dotenv').config({
+dotenv.config({
   path: './.env-default',
 });
 
@@ -17,11 +20,6 @@ const {
 
 const _ENV_ = NODE_ENV || 'development';
 const _DEV_ = _ENV_ !== 'production';
-
-import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-import {
-  webpackIsomorphicToolsConfig,
-} from './config';
 
 const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
 

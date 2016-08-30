@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import React, {
   Component,
   PropTypes,

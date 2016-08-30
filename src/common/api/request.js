@@ -9,7 +9,7 @@ import {
   getBearerToken,
 } from 'store/session/selectors';
 
-export default function * (url, method = 'GET', body = null) {
+export default function* (url, method = 'GET', body = null) {
   const query = {
     method,
     headers: new Headers({

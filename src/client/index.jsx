@@ -18,17 +18,17 @@ import {
   render,
 } from 'react-dom';
 
-import configureRoutes from 'routes';
-import configureStore from 'store';
-import rootSaga, {
-  preloadSagas,
-} from './root-saga';
-
 import {
   addLocaleData,
   IntlProvider,
 } from 'react-intl';
 import en from 'react-intl/locale-data/en';
+
+import configureRoutes from 'routes';
+import configureStore from 'store';
+import rootSaga, {
+  preloadSagas,
+} from 'client/root-saga';
 
 import './style.css';
 
