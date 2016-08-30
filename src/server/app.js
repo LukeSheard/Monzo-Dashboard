@@ -16,11 +16,11 @@ app.use(cookieParser(COOKIE_SECRET));
     WEBPACK SETUP
 ========================  */
 import webpack from 'webpack';
+import webpackConfig from 'webpack.config.babel'; // eslint-disable-line import/no-unresolved
 
 if (NODE_ENV !== 'production') {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackConfig = require('webpack.config.babel'); // eslint-disable-line import/no-unresolved
 
   const compiler = webpack(webpackConfig);
   app.use(webpackDevMiddleware(compiler, {
@@ -30,7 +30,7 @@ if (NODE_ENV !== 'production') {
   app.use(webpackHotMiddleware(compiler));
 } else {
   const staticDir = path.join(__dirname, '../..', 'dist');
-  app.use(Express.static(staticDir));
+  app.use('/static', Express.static(staticDir));
 }
 
 /*  ========================

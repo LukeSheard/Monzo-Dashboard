@@ -1,6 +1,13 @@
 import path from 'path';
 import Webpack from 'webpack';
 
+require('dotenv').config({
+  silent: true,
+});
+require('dotenv').config({
+  path: './.env-default',
+});
+
 const {
   authUrl,
   baseUrl,
@@ -18,7 +25,7 @@ export default (config) => {
       configFile: './.eslintrc.yml',
     },
     output: {
-      path: path.join(directory, 'dist'),
+      path: path.resolve(directory, 'dist'),
       filename: 'bundle.js',
       publicPath: '/static/',
     },
@@ -32,9 +39,6 @@ export default (config) => {
         '',
         '.js',
         '.jsx',
-        '.html',
-        '.scss',
-        '.css',
       ],
     },
   });

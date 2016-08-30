@@ -16,12 +16,13 @@ import rootReducer from './reducer';
 import DevTools from 'components/dev-tools';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const _DEV_ = NODE_ENV !== 'production';
 
 export default function (history, initialState = {}) {
   const sagaMiddleware = createSagaMiddleware();
 
   let plugins;
-  if (NODE_ENV === 'development') {
+  if (_DEV_) {
     plugins = compose(
       applyMiddleware(
         sagaMiddleware,

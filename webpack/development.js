@@ -4,14 +4,7 @@ import {
   webpackIsomorphicToolsConfig,
 } from './config';
 
-const {
-  NODE_ENV,
-} = process.env;
-
-const _ENV_ = NODE_ENV || 'development';
-const _DEV_ = _ENV_ !== 'production';
-
-const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
+const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(true);
 
 export default (config) => {
   config.merge({

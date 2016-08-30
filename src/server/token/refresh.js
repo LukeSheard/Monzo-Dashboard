@@ -52,7 +52,6 @@ export default function (req, res) {
     });
   }).then(() => {
     if (req.params.redirect) {
-      console.log(req.params.redirect);
       return res.redirect(req.params.redirect);
     }
 

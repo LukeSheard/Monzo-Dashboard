@@ -9,7 +9,7 @@ import loadAccounts from 'store/accounts/saga';
 
 import userisAuthenticated from 'decorators/user-is-authenticated';
 
-import s from './style';
+import s from './style.scss';
 
 @userisAuthenticated
 export default class Dashboard extends Component {

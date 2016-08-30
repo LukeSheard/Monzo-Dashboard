@@ -21,7 +21,7 @@ import {
 
 import Transaction from 'components/transaction-list/transaction';
 
-import s from './style';
+import s from './style.scss';
 
 export const mapStateToProps = (state, ownProps) => ({
   transactions: getTransactionsFromGroup(state, ownProps.date),

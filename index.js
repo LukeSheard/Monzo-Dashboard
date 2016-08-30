@@ -12,15 +12,11 @@ require('dotenv').config({
 
 // Start the Server
 const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
-if (_DEV_) {
-  const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
-  const webpackIsomorphicToolsConfig = require('./webpack/config').webpackIsomorphicToolsConfig;
+const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
+const webpackIsomorphicToolsConfig = require('./webpack/config').webpackIsomorphicToolsConfig;
 
-  global.webpack_isomorphic_tools = new WebpackIsomorphicTools(webpackIsomorphicToolsConfig)
-    .development(true)
-    .server(__dirname, () => {
-      require('server').start();
-    });
-} else {
-  require('server').start();
-}
+global.webpack_isomorphic_tools = new WebpackIsomorphicTools(webpackIsomorphicToolsConfig)
+  .development(_DEV_)
+  .server(__dirname, () => {
+    require('server').start();
+  });

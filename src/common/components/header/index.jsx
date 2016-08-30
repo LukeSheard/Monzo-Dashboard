@@ -30,7 +30,7 @@ import {
   Link,
 } from 'react-router';
 
-import s from './style';
+import s from './style.scss';
 
 @connect((state) => ({
   activeUrl: get('routing.locationBeforeTransitions.pathname', state),

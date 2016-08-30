@@ -72,21 +72,17 @@ export default (req, res) => {
     } else if (redirectLocation) {
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      const preloaders = renderProps.components
-        .filter((component) => component && component.preload)
-        .map((component) => component.preload(renderProps.params, req))
-        .reduce((result, results) => result.concat(results), []);
-
-      const renderSagas = waitForAll(preloaders);
+      const renderSagas = waitForAll(req, renderProps);
 
       return store.runSaga(renderSagas).done.then(() => {
         const renderComponent = (
           <Html store={store} renderProps={renderProps} />
         );
 
-        webpack_isomorphic_tools.refresh();
+        const htmlString = renderToString(renderComponent);
+
         res.write('<!doctype HTML>');
-        res.write(renderToString(renderComponent));
+        res.write(htmlString);
         res.status(200).end();
       }).catch((err) => {
         res.write(err).status(500).end();

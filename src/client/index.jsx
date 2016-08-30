@@ -30,7 +30,7 @@ import {
 } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 
-import './style';
+import './style.css';
 
 addLocaleData(en);
 

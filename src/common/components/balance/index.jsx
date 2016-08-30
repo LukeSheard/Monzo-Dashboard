@@ -19,7 +19,7 @@ import {
   getBalance,
 } from 'store/balance/selectors';
 
-import s from './style';
+import s from './style.scss';
 
 export const mapStateToProps = (state) => ({
   ...getBalance(state),

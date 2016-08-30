@@ -4,8 +4,6 @@ import React, {
 
 export default class TransactionListImage extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <div>
         Image

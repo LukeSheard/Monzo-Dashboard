@@ -15,7 +15,7 @@ import {
 
 import TransactionImage from './image';
 
-import s from './style';
+import s from './style.scss';
 
 export default class TransactionListTransaction extends Component {
   static propTypes = {

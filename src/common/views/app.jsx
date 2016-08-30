@@ -9,6 +9,11 @@ import {
 
 import Helmet from 'react-helmet';
 
+const {
+  NODE_ENV,
+} = process.env;
+const _DEV_ = (NODE_ENV || 'development') !== 'production';
+
 import DevTools from 'components/dev-tools';
 import Header from 'components/header';
 
@@ -47,7 +52,13 @@ export default class App extends Component {
               href: require('static/mark_isolated.png'),
               type: 'image/x-icon',
             },
-          ]}
+          ].concat(_DEV_ ? [] : [
+            {
+              rel: 'stylesheet',
+              href: '/static/style.css',
+              type: 'text/css',
+            },
+          ])}
           meta={[
             {
               charset: 'UTF-8',
@@ -67,7 +78,7 @@ export default class App extends Component {
           ]}
           titleTemplate="%s | Mondo Dashboard"
         />
-        {isMounted && <DevTools />}
+        {(_DEV_ && isMounted) && <DevTools />}
         <Header />
         <Grid componentClass="main">
 					{children}
