@@ -1,0 +1,52 @@
+{
+  "name": "Mondo Dashboard",
+  "description": "A tool for viewing your mondo balance and transactions online",
+  "keywords": [
+    "Mondo",
+    "Startup",
+    "Bank",
+    "Finance"
+  ],
+  "website": "https://github.com/LukeSheard/Mondo-Dashboard/",
+  "repository": "https://github.com/LukeSheard/Mondo-Dashboard/",
+  "env": {
+    "COOKIE_ACCESS_NAME": {
+      "description": "Cookie Name for access token",
+      "required": false
+    },
+    "COOKIE_REFRESH_NAME": {
+      "description": "Cookie Name for refresh token",
+      "required": false
+    },
+    "COOKIE_SECRET": {
+      "description": "Secret ID to encrypt cookies with",
+      "required": false
+    },
+    "authUrl": {
+      "description": "Authentication URL for OAuth",
+      "value": "https://auth.getmondo.co.uk"
+    },
+    "baseUrl": {
+      "description": "Cookie Name for access token",
+      "value": "https://api.getmondo.co.uk"
+    },
+    "CLIENT_ID": {
+      "description": "Mondo Developer App Client ID"
+    },
+    "CLIENT_SECRET": {
+      "description": "Mondo Develop App Client Secret"
+    },
+    "REDIRECT_URI": {
+      "description": "Redirect Location for OAuth, should be ${appUrl}/token/issue",
+      "value": "http://localhost:8080/token/issue"
+    },
+    "STATE_TOKEN": {
+      "description": "OAuth State verification"
+    },
+    "PORT": {
+      "description": "Desired Server port",
+      "value": 8080,
+      "required": false
+    }
+  }
+}

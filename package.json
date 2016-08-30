@@ -10,6 +10,7 @@
     "lint": "better-npm-run lint",
     "prebuild": "rm -rf dist",
     "build": "better-npm-run build",
+    "postbuild": "git add -f webpack-assets.json",
     "prestart": "ls -l",
     "start": "better-npm-run start",
     "prestart:dev": "better-npm-run prestart:dev",
