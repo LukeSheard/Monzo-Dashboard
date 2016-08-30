@@ -21,9 +21,6 @@ export default (config) => {
   const directory = process.cwd();
 
   config.merge({
-    eslint: {
-      configFile: './.eslintrc.yml',
-    },
     output: {
       path: path.resolve(directory, 'dist'),
       filename: 'bundle.js',
@@ -51,12 +48,6 @@ export default (config) => {
       NODE_ENV: _ENV_,
     }),
   }]);
-
-  config.preLoader('lint', {
-    test: /\.jsx?$/,
-    loader: 'eslint-loader',
-    exclude: /node_modules/,
-  });
 
   return config;
 };

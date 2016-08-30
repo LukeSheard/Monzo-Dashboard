@@ -15,12 +15,21 @@ export default (config) => {
       'webpack-hot-middleware/client',
       './src/client',
     ],
+    eslint: {
+      configFile: './.eslintrc.yml',
+    },
     plugins: [
       isomorphicPlugin,
     ],
   });
 
   config.plugin('hotmodule', webpack.HotModuleReplacementPlugin);
+
+  config.preLoader('lint', {
+    test: /\.jsx?$/,
+    loader: 'eslint-loader',
+    exclude: /node_modules/,
+  });
 
   config.loader('images', {
     test: isomorphicPlugin.regular_expression('images'),
