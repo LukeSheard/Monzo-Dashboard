@@ -18,7 +18,7 @@ import {
 
 import loadBalance from 'store/balance/saga';
 
-export default function * loadAccounts() {
+export default function* loadAccounts() {
   try {
     const response = yield call(
       sendGet,
@@ -35,7 +35,7 @@ export default function * loadAccounts() {
   }
 }
 
-export function * watcher() {
+export function* watcher() {
   return yield [
     call(takeLatest, attemptToRetrieveAccounts().type, loadAccounts),
   ];

@@ -38,14 +38,14 @@
       }
     },
     "start": {
-      "command": "node index.js",
+      "command": "babel-node index.js",
       "env": {
         "NODE_ENV": "production",
         "NODE_PATH": "./:./src:./src/common"
       }
     },
     "prestart:dev": {
-      "command": "webpack -p --progress",
+      "command": "webpack --progress",
       "env": {
         "NODE_ENV": "development"
       }

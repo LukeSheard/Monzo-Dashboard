@@ -21,6 +21,8 @@ globals:
 
 rules:
   global-require: 0
+  import/no-extraneous-dependencies: 0
+  import/imports-first: 0
   max-len: 0
   no-console: 0
   no-constant-condition: 0

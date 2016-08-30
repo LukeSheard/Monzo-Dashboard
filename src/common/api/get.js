@@ -8,7 +8,7 @@ import {
 
 import request from 'api/request';
 
-export default function * get(endpoint, query) {
+export default function* get(endpoint, query) {
   const url = yield call(getUrl, endpoint, query);
 
   const response = yield call(request, url, 'GET');

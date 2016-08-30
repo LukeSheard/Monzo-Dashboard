@@ -35,7 +35,7 @@ const {
 
 const _DEV_ = (NODE_ENV || 'development') === 'development';
 
-export const webpackIsomorphicToolsConfig = {
+const config = {
   debug: _DEV_,
   assets: {
     images: {
@@ -65,3 +65,5 @@ export const webpackIsomorphicToolsConfig = {
     },
   },
 };
+
+module.exports = config;

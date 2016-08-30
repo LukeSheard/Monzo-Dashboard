@@ -20,7 +20,7 @@ import {
   getSelectedAccount,
 } from 'store/accounts/selectors';
 
-export default function * loadTransactions() {
+export default function* loadTransactions() {
   const selectedAccount = yield select(getSelectedAccount);
 
   try {
@@ -39,7 +39,7 @@ export default function * loadTransactions() {
   }
 }
 
-export function * watcher() {
+export function* watcher() {
   return yield [
     call(takeLatest, attemptToRetrieveTransactions().type, loadTransactions),
   ];

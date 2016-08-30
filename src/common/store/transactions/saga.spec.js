@@ -1,7 +1,4 @@
 import test from 'tape';
-import loadTransactions, {
-  watcher,
-} from './saga';
 
 import sendGet from 'api/get';
 
@@ -24,6 +21,10 @@ import {
 import {
   getSelectedAccount,
 } from 'store/accounts/selectors';
+
+import loadTransactions, {
+  watcher,
+} from './saga';
 
 const selectedAccount = {
   id: 12355,
