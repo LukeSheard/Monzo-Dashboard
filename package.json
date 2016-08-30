@@ -2,12 +2,14 @@
   "name": "mondo-app",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">6.0.0"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "better-npm-run lint",
     "prebuild": "rm -rf dist",
     "build": "better-npm-run build",
-    "prestart": "npm run build",
     "start": "better-npm-run start",
     "prestart:dev": "better-npm-run prestart:dev",
     "start:dev": "better-npm-run start:dev",
