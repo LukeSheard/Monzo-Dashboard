@@ -4,8 +4,6 @@ engines:
     config:
       languages:
         - javascript
-        exclude_paths:
-        - "src/**/*.spec.js"
   eslint:
     enabled: true
   fixme:
@@ -14,3 +12,5 @@ ratings:
   paths:
     - "src/**/*.js"
     - "src/**/*.jsx"
+exclude_paths:
+  - "src/**/*.spec.js"
