@@ -1,13 +1,16 @@
+/* eslint-disable camelcase */
+
 import test from 'tape';
-import {
-  getBalance,
-} from 'store/balance/selectors';
 
 import {
   mapStateToProps,
 } from './index';
+// import {
+//   getBalance,
+// } from 'store/balance/selectors';
 
-const balance = 120
+
+const balance = 120;
 const currency = 'GBP';
 const spend_today = 100;
 const local_currency = 'USD';

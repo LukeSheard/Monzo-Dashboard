@@ -1,30 +1,20 @@
 language: node_js
 node_js:
-  - "6"
-
-env:
-  global:
-    secure: qXPq9f/cuXVJkN4QpaAVuXYK/MXocEur7n73jO6BLoonJnsogm7NsjSezReBLvRT49QyVoQsN/idr4tvvr5t3L0FCxjy/eW9mzedTBwWaibDlQ3FO8ZklXk5J8MCxRbAC5f5U3/ZAqvozKoqt+wli607fvpaB0N6/GCSt2JOtl9IzH8YIAx+Iy7uHp2NC8JkWbfimXyTAfP26i3yXpMDfohsukKtB0J3snvl4KKA929pEYPy93KGoKhSCvtaGOlY8rAqXXXUghYnn/DwUzaLSbyH+jNC3A5q4tEB1BX5I4+fM3FPwuTXtt/Q5dn0soTeSTWqLWsr3HlS+gvu8b4iZPWwu+axi2PRaribfP49f3zWS99Sq/Evx0vIaWFnVhxHCPTkNeRjexuVQbKYdwsqJpqY0NsYdm3h+zvN96ZGC2ezwQY6wpdAI/9al2XASiKrXF2K36czLNAQQ/0wDZGvOwiCJGffqoSdZANEAPyK5Q8D97Yz0M+YifDPYlgAiIeXynAtOlAbwVCVOGgDB88m61oxHVTWKdVpxYSj6L3sqkBwW0q9fixLKxX4Z8le3A4mBz7qu0yG/h+h7hR3GiJ78skl1mj53I/NDviwByf48P/YiiviFQ6n/bVlQCRusc3hC0LMm8tBEa4Va48O2V/E55gKGdjWb4L2J6o6tJicqDQ=
+- '6'
 os:
 - linux
-
 notifications:
   email: false
-
 before_script:
 - npm install
 - npm install -g codeclimate-test-reporter
-
 script:
 - npm test
-
 after_success:
 - codeclimate-test-reporter < coverage/lcov.info
-
 before_deploy:
 - npm run build
 - git add -f webpack-assets.json
-
 deploy:
   provider: heroku
   api_key:
@@ -34,3 +24,6 @@ deploy:
   on:
     branch: master
   skip_cleanup: true
+env:
+  global:
+    secure: U5GSXDXJcaDbBT+oOw5RPp0gimdC3354eWAIFfEbwgb4OTqbENW9UEjQif7nghLmAQOJEArF+sv9D75VkOpdn7gshdUxx3IMyt5M0vex4u2RYVn0ySsSB7k1y8bnd4vFMv3Y9yyYHb87d3nwREti3XLqu0PQO/rAGKt8lxHZGvXlus2wpbHEAPlf1InAp1ANDa+eVzQ/ifcL/XW9nyv5qPgDdJ65CLCubn2FZWG9CZXIsCbgsDpPUGVlLxF3jw+Ft2O/rgo2zdLEi/NleEj/spAcWde4TNU1Nn3ycgQy8JuNqW4imZPY3mhy+bIUSB0mDLGx0MKDbijDukbxAV/K2dmtW9RM3RkK1SQcqcA/gLMyr8LpMIyRg1zpcRITtnGmRIb8KulD6SyoYSKgBC5Irhb55pFicRyQP7wVNLwBcy4O+c5EfYz5N8lBUD4FYrskHQlKD/DUWe4b2BYxWt2Qs4f4Y82F7j5/j5WQilaUWQF+JpwKHnW/yM2GvVvxZo/I7G5KXxEiGAxQ+8VxHat8SeGJxpoeJkRgMzBCAbmzeZVSLRrqoZhgJ7SAXt1S1CpY4AWtQxIhaXtfBpF7/5RZphnvJSbinfYwlERvaJkKhq6UoWVenNMWJR9sgqUTqpmODeqeNqtLnW9QJ1XY/b82cXKhO2kIkgJWUhSeP27lP14=

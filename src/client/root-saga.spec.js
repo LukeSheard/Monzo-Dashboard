@@ -20,13 +20,6 @@ import rootSaga, {
   preloadSagas,
 } from './root-saga';
 
-/*
-  Imports from Module
-*/
-
-
-
-
 test('Sagas: Root Saga', (t) => {
   let actual;
   let expected;
