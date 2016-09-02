@@ -21,6 +21,8 @@
   "nyc": {
     "exclude": [
       "**/*.spec.js",
+      "webpack.config.babel.js",
+      "webpack/*.js",
       "node_modules"
     ]
   },
@@ -58,7 +60,7 @@
       }
     },
     "test:quick": {
-      "command": "babel-tape-runner src/**/*.spec.js src/**/**/*.spec.js src/**/**/**/*.spec.js | tap-spec",
+      "command": "babel-tape-runner src/**/**/**/**/**/**/*.spec.js | tap-spec",
       "env": {
         "BABEL_DISABLE_CACHE": 1,
         "baseUrl": "http://www.example.com/",
@@ -67,7 +69,7 @@
       }
     },
     "test": {
-      "command": "babel-tap src/*/*.spec.js src/*/*/*.spec.js src/*/*/*/*.spec.js -b --cov --coverage-report=lcov",
+      "command": "babel-tap src/**/**/**/**/**/**/*.spec.js -b --cov --coverage-report=lcov --check-coverage --statements 100 --lines 100 --functions 100",
       "env": {
         "BABEL_DISABLE_CACHE": 1,
         "baseUrl": "http://www.example.com/",
@@ -145,6 +147,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
+    "babel-plugin-istanbul": "^2.0.1",
     "babel-plugin-webpack-loaders": "^0.7.1",
     "babel-tap": "^5.0.0",
     "babel-tape-runner": "^2.0.1",
