@@ -1,5 +1,5 @@
 {
-  "name": "mondo-app",
+  "name": "monzo-app",
   "version": "1.0.0",
   "description": "",
   "engines": {
@@ -78,14 +78,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LukeSheard/Mondo-Dashboard.git"
+    "url": "git+https://github.com/LukeSheard/Monzo-Dashboard.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LukeSheard/Mondo-Dashboard/issues"
+    "url": "https://github.com/LukeSheard/Monzo-Dashboard/issues"
   },
-  "homepage": "https://github.com/LukeSheard/Mondo-Dashboard#readme",
+  "homepage": "https://github.com/LukeSheard/Monzo-Dashboard#readme",
   "dependencies": {
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",

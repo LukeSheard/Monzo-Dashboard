@@ -27,9 +27,9 @@ export default function (req, res) {
         redirect_uri: REDIRECT_URI,
         code,
       })
-      .end((err, mondoData) => {
+      .end((err, monzoData) => {
         if (err) return reject(err);
-        return resolve(mondoData);
+        return resolve(monzoData);
       })
     ).then((data) => {
       const {

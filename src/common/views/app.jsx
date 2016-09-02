@@ -1,16 +1,13 @@
+import DevTools from 'components/dev-tools';
+import Header from 'components/header';
+import Helmet from 'react-helmet';
 import React, {
   Component,
   PropTypes,
 } from 'react';
-
 import {
   Grid,
 } from 'react-bootstrap';
-
-import Helmet from 'react-helmet';
-
-import DevTools from 'components/dev-tools';
-import Header from 'components/header';
 
 const {
   NODE_ENV,
@@ -40,7 +37,7 @@ export default class App extends Component {
     } = this.state;
 
     return (
-      <div id="mondo-app">
+      <div id="monzo-app">
         <Helmet
           defaultTitle="Home"
           htmlAttributes={{
@@ -65,18 +62,18 @@ export default class App extends Component {
             },
             {
               name: 'description',
-              content: 'A Mondo dashboard application to check your online finances',
+              content: 'A Monzo dashboard application to check your online finances',
             },
             {
               name: 'keywords',
-              content: 'Mondo,GetMondo,Finance',
+              content: 'Monzo,GetMonzo,Finance',
             },
             {
               name: 'Author',
               content: 'Luke Sheard',
             },
           ]}
-          titleTemplate="%s | Mondo Dashboard"
+          titleTemplate="%s | Monzo Dashboard"
         />
         {(_DEV_ && isMounted) && <DevTools />}
         <Header />

@@ -1,9 +1,7 @@
+import Helmet from 'react-helmet';
 import React, {
   Component,
 } from 'react';
-
-import Helmet from 'react-helmet';
-
 import {
   Col,
   PageHeader,
@@ -19,10 +17,10 @@ export default class About extends Component {
           <Col sm={12}>
             <PageHeader>
               <div>
-                Mondo Dashboard
+                Monzo Dashboard
               </div>
               <div>
-                <small>A simple tool for checking your mondo balance online</small>
+                <small>A simple tool for checking your Monzo balance online</small>
               </div>
             </PageHeader>
           </Col>

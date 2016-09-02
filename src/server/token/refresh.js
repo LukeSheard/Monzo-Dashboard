@@ -1,5 +1,4 @@
 import request from 'superagent';
-
 import {
   get,
   isEmpty,
@@ -29,9 +28,9 @@ export default function (req, res) {
       client_secret: CLIENT_SECRET,
       refresh_token: refreshCookie,
     })
-    .end((err, mondoData) => {
+    .end((err, monzoData) => {
       if (err) return reject(err);
-      return resolve(mondoData);
+      return resolve(monzoData);
     })
   ).then((data) => {
     const {

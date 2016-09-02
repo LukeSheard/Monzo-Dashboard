@@ -1,34 +1,28 @@
-import {
-  get,
-} from 'lodash/fp';
-
 import React, {
   Component,
   PropTypes,
 } from 'react';
-
 import {
-  connect,
-} from 'react-redux';
-
-import {
-  tokenValid,
-} from 'store/session/selectors';
-
+  get,
+} from 'lodash/fp';
 import {
   Nav,
   Navbar,
   NavItem,
 } from 'react-bootstrap';
-
+import {
+  connect,
+} from 'react-redux';
+import {
+  Link,
+} from 'react-router';
 import {
   IndexLinkContainer,
   LinkContainer,
 } from 'react-router-bootstrap';
-
 import {
-  Link,
-} from 'react-router';
+  tokenValid,
+} from 'store/session/selectors';
 
 import s from './style.scss';
 
@@ -58,7 +52,7 @@ export default class Header extends Component {
           <Navbar.Brand className={s.brand}>
             <Link to="">
               <img
-                alt="Mondo Logo"
+                alt="Monzo Logo"
                 className={s.brandLogo}
                 src={require('static/logo_dark.png')}
                 style={{

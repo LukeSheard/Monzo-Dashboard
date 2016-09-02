@@ -1,7 +1,21 @@
 /*
   Test Setup
 */
+
 import test from 'tape';
+import loadBalance, {
+  watcher as watchToRetrieveBalance,
+} from 'store/balance/saga';
+import loadTransactions, {
+  watcher as watchToRetrieveTransactions,
+} from 'store/transactions/saga';
+import {
+  fork,
+} from 'redux-saga/effects';
+import {
+  watcher as watchToRetrieveAccounts,
+} from 'store/accounts/saga';
+
 import rootSaga, {
   preloadSagas,
 } from './root-saga';
@@ -9,21 +23,9 @@ import rootSaga, {
 /*
   Imports from Module
 */
-import {
-  fork,
-} from 'redux-saga/effects';
 
-import {
-  watcher as watchToRetrieveAccounts,
-} from 'store/accounts/saga';
 
-import loadBalance, {
-  watcher as watchToRetrieveBalance,
-} from 'store/balance/saga';
 
-import loadTransactions, {
-  watcher as watchToRetrieveTransactions,
-} from 'store/transactions/saga';
 
 test('Sagas: Root Saga', (t) => {
   let actual;
@@ -80,7 +82,7 @@ test('Sagas: Preload Saga', (t) => {
   actual = saga.next().value;
   t.deepEqual(
     actual, expected,
-    'Saga collects data from Mondo api'
+    'Saga collects data from Monzo api'
   );
 
   t.end();

@@ -1,11 +1,11 @@
 # Monzo-Dashboard
-[![Build Status](https://travis-ci.org/LukeSheard/Mondo-Dashboard.svg?branch=master)](https://travis-ci.org/LukeSheard/Mondo-Dashboard)
-[![Code Climate](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard/badges/gpa.svg)](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard)
-[![Test Coverage](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard/badges/coverage.svg)](https://codeclimate.com/github/LukeSheard/Mondo-Dashboard/coverage)
-[![dependencies Status](https://david-dm.org/LukeSheard/Mondo-Dashboard/status.svg)](https://david-dm.org/LukeSheard/Mondo-Dashboard)
-[![devDependencies Status](https://david-dm.org/LukeSheard/Mondo-Dashboard/dev-status.svg)](https://david-dm.org/LukeSheard/Mondo-Dashboard?type=dev)
+[![Build Status](https://travis-ci.org/LukeSheard/Monzo-Dashboard.svg?branch=master)](https://travis-ci.org/LukeSheard/Monzo-Dashboard)
+[![Code Climate](https://codeclimate.com/github/LukeSheard/Monzo-Dashboard/badges/gpa.svg)](https://codeclimate.com/github/LukeSheard/Monzo-Dashboard)
+[![Test Coverage](https://codeclimate.com/github/LukeSheard/Monzo-Dashboard/badges/coverage.svg)](https://codeclimate.com/github/LukeSheard/Monzo-Dashboard/coverage)
+[![dependencies Status](https://david-dm.org/LukeSheard/Monzo-Dashboard/status.svg)](https://david-dm.org/LukeSheard/Monzo-Dashboard)
+[![devDependencies Status](https://david-dm.org/LukeSheard/Monzo-Dashboard/dev-status.svg)](https://david-dm.org/LukeSheard/Mondo-Dashboard?type=dev)
 
-Monzo-Dashboard is a project to build out a working web based "clone" of the existing iOS Mondo
+Monzo-Dashboard is a project to build out a working web based "clone" of the existing iOS Monzo
 application, currently it features a transaction list and transaction view similar to the feed
 on the iOS app. However there are plans to include further features such as
 - [ ] Spending Maps
