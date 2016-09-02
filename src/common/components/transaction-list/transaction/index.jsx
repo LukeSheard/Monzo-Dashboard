@@ -1,21 +1,17 @@
+import Moment from 'moment';
 import React, {
   Component,
   PropTypes,
 } from 'react';
-
-import Moment from 'moment';
-
 import {
   Clearfix,
 } from 'react-bootstrap';
-
 import {
   FormattedNumber,
 } from 'react-intl';
 
-import TransactionImage from './image';
-
 import s from './style.scss';
+import TransactionImage from './image';
 
 export default class TransactionListTransaction extends Component {
   static propTypes = {
@@ -48,18 +44,20 @@ export default class TransactionListTransaction extends Component {
           load={load}
           {...merchant}
         />
-        <summary>
-          <h3>
-            {description}
-          </h3>
-        </summary>
-        <main>
-          <FormattedNumber
-            style="currency"
-            currency={currency}
-            value={amount}
-          />
-        </main>
+        <div className={s.transactionBody}>
+          <summary>
+            <h3 className={s.transactionTitle}>
+              {description}
+            </h3>
+          </summary>
+          <main>
+            <FormattedNumber
+              style="currency"
+              currency={currency}
+              value={amount}
+            />
+          </main>
+        </div>
       </Clearfix>
     );
   }

@@ -9,13 +9,13 @@
     "transform-runtime"
   ],
   "env": {
-    "EXAMPLE": {
+    "test": {
       "plugins": [
         [
           "babel-plugin-webpack-loaders",
           {
             "config": "./webpack.config.babel.js",
-            "verbose": false
+            "verbose": false,
           }
         ]
       ]

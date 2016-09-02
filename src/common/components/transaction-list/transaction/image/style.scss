@@ -1,0 +1,56 @@
+.transactionListImage {
+  width: 65px;
+  height: 65px;
+
+  margin: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 4px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  background-color: rgb(220, 220, 220);
+}
+
+.load {
+  background-color: rgb(81, 164, 87);
+
+  $plusSize: 6px;
+  $plusHeight: 30px;
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  &:before {
+    left: calc(50%);
+    width: $plusSize;
+    margin-left: -$plusSize / 2.0;
+    height: $plusHeight;
+  }
+
+  &:after {
+    top: 50%;
+    height: $plusSize;
+    margin-top: -$plusSize / 2.0;
+    width: $plusHeight;
+  }
+}
+
+h3.transactionListImageLetters {
+  margin: 0;
+}
+
+.logo {
+  > h3.transactionListImageLetters {
+    display: none;
+  }
+}

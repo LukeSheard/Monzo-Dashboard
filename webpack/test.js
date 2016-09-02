@@ -1,9 +1,5 @@
 import dotenv from 'dotenv';
-import path from 'path';
 import Webpack from 'webpack';
-import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
-
-import webpackIsomorphicToolsConfig from './config';
 
 dotenv.config({
   silent: true,
@@ -16,22 +12,14 @@ const {
   authUrl,
   baseUrl,
   GOOGLE_API_KEY,
-  NODE_ENV,
 } = process.env;
-
-const _ENV_ = NODE_ENV || 'development';
-const _DEV_ = _ENV_ !== 'production';
-
-const isomorphicPlugin = new WebpackIsomorphicToolsPlugin(webpackIsomorphicToolsConfig).development(_DEV_);
 
 export default (config) => {
   const directory = process.cwd();
 
   config.merge({
     output: {
-      path: path.resolve(directory, 'dist'),
-      filename: 'bundle.js',
-      publicPath: '/static/',
+      libraryTarget: 'commonjs2',
     },
     resolve: {
       modulesDirectories: [
@@ -45,8 +33,24 @@ export default (config) => {
         '.jsx',
       ],
     },
-    plugins: [
-      isomorphicPlugin,
+  });
+
+  config.loader('sass', {
+    test: /\.scss$/,
+    loaders: [
+      'style',
+      'css?modules&localIdentName=[path][name]__[local]--[hash:base64:3]',
+      'postcss',
+      'sass',
+    ],
+  });
+
+  config.loader('css', {
+    test: /\.css$/,
+    loaders: [
+      'style',
+      'css',
+      'postcss',
     ],
   });
 
@@ -55,9 +59,9 @@ export default (config) => {
       authUrl,
       baseUrl,
       GOOGLE_API_KEY,
-      NODE_ENV: _ENV_,
+      NODE_ENV: 'test',
     }),
   }]);
 
   return config;
-};
+}
