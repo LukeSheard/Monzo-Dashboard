@@ -20,6 +20,7 @@
   },
   "nyc": {
     "exclude": [
+      "src/common/store/index.js",
       "**/*.spec.js",
       "webpack.config.babel.js",
       "webpack/*.js",
