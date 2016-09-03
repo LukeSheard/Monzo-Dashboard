@@ -1,24 +1,25 @@
+import DevTools from 'components/dev-tools';
+import createSagaMiddleware, {
+  END,
+} from 'redux-saga';
+import {
+  createMemoryHistory,
+} from 'react-router';
+import {
+  routerMiddleware,
+} from 'react-router-redux';
 import {
   applyMiddleware,
   compose,
   createStore,
 } from 'redux';
 
-import {
-  routerMiddleware,
-} from 'react-router-redux';
-
-import createSagaMiddleware, {
-  END,
-} from 'redux-saga';
-
 import rootReducer from './reducer';
-import DevTools from 'components/dev-tools';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const _DEV_ = NODE_ENV !== 'production';
 
-export default function (history, initialState = {}) {
+export default function (history = createMemoryHistory(), initialState = {}) {
   const sagaMiddleware = createSagaMiddleware();
 
   let plugins;

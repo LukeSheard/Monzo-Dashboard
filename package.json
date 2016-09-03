@@ -60,7 +60,7 @@
       }
     },
     "test:quick": {
-      "command": "babel-tape-runner src/**/**/**/**/**/**/*.spec.js | tap-spec",
+      "command": "babel-tape-runner src/common/components/balance/*.spec.js | tap-spec",
       "env": {
         "BABEL_DISABLE_CACHE": 1,
         "baseUrl": "http://www.example.com/",
@@ -69,7 +69,7 @@
       }
     },
     "test": {
-      "command": "babel-tap src/**/**/**/**/**/**/*.spec.js -b --cov --coverage-report=lcov --check-coverage --statements 100 --lines 100 --functions 100",
+      "command": "babel-tap src/**/**/**/**/**/**/*.spec.js --cov --coverage-report=lcov --check-coverage --statements 100 --lines 100 --functions 100",
       "env": {
         "BABEL_DISABLE_CACHE": 1,
         "baseUrl": "http://www.example.com/",

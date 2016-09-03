@@ -1,14 +1,19 @@
 /* eslint-disable camelcase */
 
+import createStore from 'store';
 import test from 'tape';
-
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import {
+  Provider,
+} from 'react-redux';
+import {
+  getBalance,
+} from 'store/balance/selectors';
+
+import Balance, {
   mapStateToProps,
 } from './index';
-// import {
-//   getBalance,
-// } from 'store/balance/selectors';
-
 
 const balance = 120;
 const currency = 'GBP';
@@ -37,15 +42,7 @@ test('Components: Balance - mapStateToProps', (t) => {
 
   const actual = mapStateToProps(state);
   const expected = {
-    currency,
-    balance: balance / 100,
-    spendToday: Math.abs(spend_today / 100),
-    localSpend: local_spend ? local_spend.map(region => ({
-      spendToday: region.spend_today,
-      currency: region.currency,
-    })) : [],
-    localCurrency: local_currency,
-    localExchangeRate: local_exchange_rate,
+    ...getBalance(state),
   };
 
   t.deepEqual(
@@ -53,5 +50,20 @@ test('Components: Balance - mapStateToProps', (t) => {
     'mapStateToProps should create correct state'
   );
 
+  t.end();
+});
+
+test('Components: Balance - Component', (t) => {
+  const renderer = TestUtils.createRenderer();
+
+  renderer.render((
+    <Balance store={createStore()} />
+  ));
+
+  const BalanceView = renderer.getRenderOutput();
+
+  console.log(BalanceView);
+
+  t.pass();
   t.end();
 });
