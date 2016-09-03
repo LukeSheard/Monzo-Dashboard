@@ -16,7 +16,8 @@
           {
             "config": "./webpack.config.babel.js",
             "verbose": false
-          }
+          },
+          "istanbul"
         ]
       ]
     }
