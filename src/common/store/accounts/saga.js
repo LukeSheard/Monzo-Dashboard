@@ -1,9 +1,8 @@
+import loadBalance from 'store/balance/saga';
 import sendGet from 'api/get';
-
 import {
   takeLatest,
 } from 'redux-saga';
-
 import {
   call,
   put,
@@ -15,8 +14,6 @@ import {
   failureToRetrieveAccounts,
   successToRetrieveAccounts,
 } from './duck';
-
-import loadBalance from 'store/balance/saga';
 
 export default function* loadAccounts() {
   try {

@@ -1,5 +1,5 @@
 .transactionContainer {
-  padding: 0 5px;
+  padding: 7px;
   display: flex;
   flex-direction: row;
   justify-content:flex-start;
@@ -25,8 +25,30 @@
   max-width: calc(100% - 75px);
 }
 
+.transactionBodyRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: flex-start;
+  align-items: stretch;
+}
+
 .transactionTitle {
+  display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.transactionAmount {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: right;
+}
+
+.transactionAmountMain {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
 }

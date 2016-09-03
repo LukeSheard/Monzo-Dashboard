@@ -33,8 +33,11 @@ export default class TransactionListTransaction extends Component {
     const {
       amount,
       currency,
+      date,
       description,
       load,
+      localAmount,
+      localCurrency,
       merchant,
     } = this.props;
 
@@ -44,20 +47,36 @@ export default class TransactionListTransaction extends Component {
           load={load}
           {...merchant}
         />
-        <div className={s.transactionBody}>
-          <summary>
-            <h3 className={s.transactionTitle}>
+        <section className={s.transactionBody}>
+          <main className={s.transactionBodyRow}>
+            <h2 className={s.transactionTitle}>
               {description}
-            </h3>
-          </summary>
-          <main>
-            <FormattedNumber
-              style="currency"
-              currency={currency}
-              value={amount}
-            />
+            </h2>
+            <div className={s.transactionAmount}>
+              <h3 className={s.transactionAmountMain}>
+                <FormattedNumber
+                  style="currency"
+                  currency={currency}
+                  value={amount}
+                />
+              </h3>
+              {localCurrency !== currency ? (
+                <span>
+                (
+                  <FormattedNumber
+                    style="currency"
+                    currency={localCurrency}
+                    value={localAmount}
+                  />
+                )
+                </span>
+              ) : null}
+            </div>
           </main>
-        </div>
+          <aside>
+            {date.fromNow()}
+          </aside>
+        </section>
       </Clearfix>
     );
   }

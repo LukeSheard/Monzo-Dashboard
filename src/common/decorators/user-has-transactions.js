@@ -1,14 +1,11 @@
 import Loading from 'components/loading';
-
 import {
   get,
   isEmpty,
 } from 'lodash/fp';
-
 import {
   routerActions,
 } from 'react-router-redux';
-
 import {
   UserAuthWrapper as userAuthWrapper,
 } from 'redux-auth-wrapper';
@@ -21,8 +18,9 @@ export default userAuthWrapper({
   LoadingComponent: Loading,
 
   // Redirect Options
-  failureRedirectPath: '/error?code=500',
+  failureRedirectPath: '/error',
   redirectAction: routerActions.replace,
+  allowRedirectBack: false,
 
   // Wrapper Options
   wrapperDisplayName: 'TransactionProtectionWrapper',

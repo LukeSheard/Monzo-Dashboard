@@ -1,5 +1,15 @@
+import userIsAuthenticated from 'decorators/user-is-authenticated';
+import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
+import About from 'routes/about';
+import App from 'views/app';
+import Dashboard from 'views/dashboard';
+import ErrorView from 'routes/error';
+import Login from 'routes/login';
+import NotFound from 'routes/not-found';
 import React from 'react';
-
+import Settings from 'routes/settings';
+import SignOut from 'routes/sign-out';
+import TransactionList from 'routes/transaction-list';
 import {
   IndexRedirect,
   IndexRoute,
@@ -8,23 +18,13 @@ import {
 } from 'react-router';
 
 // decorators
-import userIsAuthenticated from 'decorators/user-is-authenticated';
-import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 
 // // Area Component
 // import Area from 'components/area';
 
 // Contexts
-import App from 'views/app';
-import Dashboard from 'views/dashboard';
 
 // Views
-import About from 'routes/about';
-import Login from 'routes/login';
-import NotFound from 'routes/not-found';
-import Settings from 'routes/settings';
-import SignOut from 'routes/sign-out';
-import TransactionList from 'routes/transaction-list';
 
 export default (store) => {
   const connect = (fn) => (nextState, replace) => fn(store, nextState, replace);
@@ -37,6 +37,7 @@ export default (store) => {
       />
 
       <Route path="about" component={About} />
+      <Route path="error" component={ErrorView} />
       <Route path="not-found" component={NotFound} />
 
       <Route
