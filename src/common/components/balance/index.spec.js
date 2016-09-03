@@ -5,9 +5,6 @@ import test from 'tape';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import {
-  Provider,
-} from 'react-redux';
-import {
   getBalance,
 } from 'store/balance/selectors';
 
