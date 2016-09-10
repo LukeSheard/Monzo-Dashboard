@@ -1,7 +1,9 @@
+import userHasTransactions from 'decorators/user-has-transactions';
 import userIsAuthenticated from 'decorators/user-is-authenticated';
 import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 import About from 'routes/about';
 import App from 'views/app';
+import Area from 'components/area';
 import Dashboard from 'views/dashboard';
 import ErrorView from 'routes/error';
 import Login from 'routes/login';
@@ -16,15 +18,6 @@ import {
   Redirect,
   Route,
 } from 'react-router';
-
-// decorators
-
-// // Area Component
-// import Area from 'components/area';
-
-// Contexts
-
-// Views
 
 export default (store) => {
   const connect = (fn) => (nextState, replace) => fn(store, nextState, replace);
@@ -47,7 +40,10 @@ export default (store) => {
       >
         <IndexRedirect to="transactions" />
 
-        <Route path="transactions" component={TransactionList} />
+        <Route path="transactions" component={userHasTransactions(Area)}>
+          <IndexRoute component={TransactionList} />
+        </Route>
+
         <Route path="settings" component={Settings} />
         <Route path="sign-out" component={SignOut} />
       </Route>
