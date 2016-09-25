@@ -78,7 +78,7 @@ export default class App extends Component {
         {(_DEV_ && isMounted) && <DevTools />}
         <Header />
         <Grid componentClass="main">
-					{children}
+          {children}
         </Grid>
       </div>
     );
