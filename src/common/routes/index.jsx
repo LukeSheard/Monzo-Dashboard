@@ -3,7 +3,7 @@ import userIsAuthenticated from 'decorators/user-is-authenticated';
 import userIsNotAuthenticated from 'decorators/user-is-not-authenticated';
 import About from 'routes/about';
 import App from 'views/app';
-import Area from 'components/area';
+import Area from 'common/components/area';
 import Dashboard from 'views/dashboard';
 import ErrorView from 'routes/error';
 import Login from 'routes/login';
